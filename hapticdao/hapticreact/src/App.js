@@ -7,6 +7,7 @@ import Marketplace from './components/Marketplace';
 import Swap from './components/Swap';
 import Cards from './components/Cards';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from './components/Dashboard';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
             <Route path="/dao" exact element={<Dao/>} />
             <Route path="/swap" exact element={<Swap/>} />
             <Route path="/marketplace" exact element={<Marketplace/>} />
+            <Route path="/dashboard" exact element={<Dashboard/>} />
+
         </Routes>
 
       </Router>

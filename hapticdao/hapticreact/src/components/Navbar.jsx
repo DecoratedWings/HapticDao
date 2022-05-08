@@ -44,6 +44,12 @@ const Navbar = () => {
         });
         speak({ text: "Home" });
     }
+    async function selectDashboard() {
+        var status = await hapticVibrationService.selectionVibrate(function (fallback) {
+            console.log("Vibration encountered an error: ", fallback);
+        });
+        speak({ text: "Dashboard" });
+    }
 
     return (
         <div className='fixed w-full h-[100px] flex justify-between items-center px-4 bg-teal-100 text-gray-500'>
@@ -56,6 +62,7 @@ const Navbar = () => {
             <div>
                 <ul className='hidden md:flex'>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/send' onClick={selectSend}>SEND</Link></li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/dashboard' onClick={selectDashboard}>DASHBOARD</Link></li>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/dao' onClick={selectDao}>DAO</Link></li>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/swap' onClick={selectSwap}>SWAP</Link></li>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/marketplace' onClick={selectMarketplace}>MARKETPLACE</Link></li>
@@ -70,6 +77,7 @@ const Navbar = () => {
             {/* Menu for Mobile */}
             <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-teal-100 flex flex-col justify-center items-center'}>
                 <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectSend}>SEND</Link></li>
+                <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectDashboard}>DASHBOARD</Link></li>
                 <li className='py-6 text-4xl'><Link to='/dao' className='hover:bg-teal-500 hover:text-white' onClick={selectDao}>DAO</Link></li>
                 <li className='py-6 text-4xl'><Link to='/swap' className='hover:bg-teal-500 hover:text-white' onClick={selectSwap}>SWAP</Link></li>
                 <li className='py-6 text-4xl'><Link to='/marketplace' className='hover:bg-teal-500 hover:text-white' onClick={selectMarketplace}>MARKETPLACE</Link></li>
