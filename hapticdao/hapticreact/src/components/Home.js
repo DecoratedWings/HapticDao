@@ -10,7 +10,7 @@ const Home = () => {
     const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
-        var status = await hapticVibrationService.handleVibrate(function(fallback){
+        var status = await hapticVibrationService.failVibrate(function(fallback){
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: "Entering The Application" });
