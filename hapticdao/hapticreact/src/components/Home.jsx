@@ -1,7 +1,7 @@
 import React from 'react'
 import Hands3D from './3DHands';
 import { useSpeechSynthesis } from 'react-speech-kit';
-import HapticVibrationService from './HapticVibrationService';
+import HapticVibrationService from '../services/HapticVibrationService';
 
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
     const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
-        var status = await hapticVibrationService.failVibrate(function(fallback){
+        var status = await hapticVibrationService.selectionVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: "Entering The Application" });
@@ -38,8 +38,10 @@ const Home = () => {
             {/* <iframe src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='500px' height='500px' > */}
             {/* </iframe> */}
 
-
-            <Hands3D />
+            {/* Hide 3D Design on Mobile to show menu */}
+            <div className='hidden md:flex'>
+                <Hands3D />
+            </div>
 
         </div>
 
