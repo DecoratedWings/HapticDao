@@ -1,17 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Send from './components/Send';
+import Dao from './components/Dao';
+import Marketplace from './components/Marketplace';
+import Swap from './components/Swap';
 import Cards from './components/Cards';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
     <div >
-              <Navbar />
-              <Home />
-              {/* <Cards/> */}
+      <Router>
+       <Navbar />
+        <Routes>
+            <Route  path="/send" exact element={<Send/>} />
+            <Route  path="/"  exact element={<Home/>} />
+            <Route path="/dao" exact element={<Dao/>} />
+            <Route path="/swap" exact element={<Swap/>} />
+            <Route path="/marketplace" exact element={<Marketplace/>} />
+        </Routes>
 
-        {/* <iframe src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='100%' height='100%'></iframe> */}
+      </Router>
+      {/* <Home /> */}
+      {/* <Cards/> */}
+
     </div>
   );
 }

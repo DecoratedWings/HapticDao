@@ -3,6 +3,7 @@ import Logo from '../assets/hdLogo.png';
 import {FaBars, FaTimes} from 'react-icons/fa';
 import HapticVibrationService from '../services/HapticVibrationService';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import { Link } from 'react-router-dom';
 
 
 
@@ -46,11 +47,12 @@ const Navbar = () => {
                 </a>
             </div>
             <div>
+                
                 <ul className='hidden md:flex'>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'onClick={selectSend}>SEND</li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'onClick={selectDao}>DAO</li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'onClick={selectSwap}>SWAP</li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'onClick={selectMarketplace}>MARKETPLACE</li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/send' onClick={selectSend}>SEND</Link></li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/dao' onClick={selectDao}>DAO</Link></li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/swap' onClick={selectSwap}>SWAP</Link></li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/marketplace' onClick={selectMarketplace}>MARKETPLACE</Link></li>
                 </ul>
             </div>
 
@@ -61,10 +63,10 @@ const Navbar = () => {
 
         {/* Menu for Mobile */}
         <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-teal-100 flex flex-col justify-center items-center'}>
-            <li className='py-6 text-4xl'><button className='hover:bg-teal-500 hover:text-white' onClick={selectSend}>SEND</button></li>
-            <li className='py-6 text-4xl'><button className='hover:bg-teal-500 hover:text-white' onClick={selectDao}>DAO</button></li>
-            <li className='py-6 text-4xl'><button className='hover:bg-teal-500 hover:text-white' onClick={selectSwap}>SWAP</button></li>
-            <li className='py-6 text-4xl'><button className='hover:bg-teal-500 hover:text-white' onClick={selectMarketplace}>MARKETPLACE</button></li>
+            <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectSend}>SEND</Link></li>
+            <li className='py-6 text-4xl'><Link to='/dao' className='hover:bg-teal-500 hover:text-white' onClick={selectDao}>DAO</Link></li>
+            <li className='py-6 text-4xl'><Link to='/swap' className='hover:bg-teal-500 hover:text-white' onClick={selectSwap}>SWAP</Link></li>
+            <li className='py-6 text-4xl'><Link to='/marketplace' className='hover:bg-teal-500 hover:text-white' onClick={selectMarketplace}>MARKETPLACE</Link></li>
         </ul>
 
 
