@@ -11,10 +11,10 @@ const Navbar = () => {
             </div>
             <div>
                 <ul className='hidden md:flex'>
-                    <li>Home</li>
-                    <li>DAO</li>
-                    <li>SWAP</li>
-                    <li>MARKETPLACE</li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'>Home</li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'>DAO</li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'>SWAP</li>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'>MARKETPLACE</li>
                 </ul>
             </div>
 
