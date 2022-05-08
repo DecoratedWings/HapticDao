@@ -1,7 +1,20 @@
 import React from 'react'
 import Hands3D from './3DHands';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
+
 
 const Home = () => {
+
+    const {speak} = useSpeechSynthesis();
+
+     async function handleVibrate(){
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate([100,200,150]);
+        console.log("Vibration occurred"); 
+        speak({text:"Entering The Application"});
+    }
+
     return (
 
         <div name='home' className='w-full h-screen justify-center bg-teal-100'>
@@ -15,7 +28,7 @@ const Home = () => {
             </div>
             <div className='max-w-[200px] mx-auto px-8  justify-center '>
 
-            <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full">
+            <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full" onClick={handleVibrate}>
                     ENTER APP
                 </button>
             </div>
