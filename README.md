@@ -12,4 +12,8 @@
     ```
     python3 manage.py runserver
     ```
+3) To test vibrations on mobile device:
+    i) Determine IP address of machine you are running the app on
+    ii) Grab the port you are running the react app on
+    iii) On your mobile browser: search <IP_ADDRESS>:<PORT>
 
