@@ -4,13 +4,14 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div >
+              <Navbar />
+
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          UI in progress.
+          UI IN PROGRESS.
         </p>
-        <Navbar />
       </header>
     </div>
   );
