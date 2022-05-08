@@ -7,12 +7,12 @@ function App() {
     <div >
               <Navbar />
 
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           UI IN PROGRESS.
         </p>
-      </header>
+      </header> */}
     </div>
   );
 }
