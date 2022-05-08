@@ -19,6 +19,8 @@ const Home = () => {
                     ENTER APP
                 </button>
             </div>
+            <br/>
+
             {/* <iframe src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='500px' height='500px' > */}
             {/* </iframe> */}
 
