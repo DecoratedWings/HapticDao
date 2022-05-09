@@ -14,7 +14,7 @@ const MainPage = () => {
     var status = await hapticVibrationService.selectionVibrate(function (fallback) {
         console.log("Vibration encountered an error: ", fallback);
     });
-    speak({ text: "Send" });
+    speak({ text: "Transfer" });
 }
 async function selectDao() {
     var status = await hapticVibrationService.selectionVibrate(function (fallback) {
@@ -27,7 +27,7 @@ async function selectSwap() {
     var status = await hapticVibrationService.selectionVibrate(function (fallback) {
         console.log("Vibration encountered an error: ", fallback);
     });
-    speak({ text: "Swap" });
+    speak({ text: "Dex" });
 }
 async function selectMarketplace() {
     var status = await hapticVibrationService.selectionVibrate(function (fallback) {
@@ -59,7 +59,7 @@ async function selectDashboard() {
 
           {/* Card */}
           <Card icon={<FaThList size={40} />} heading='Haptic Dashboard' text='Dashboard For viewing your tokens and NFTs' page='dashboard' choice={selectDashboard}/>
-          <Card icon={<FaBtc size={40} />} heading='Haptic Send' text='Transfer from any valid chain that our application supports to recipients addresses on the respective chain.' page='send' choice={selectSend}/>
+          <Card icon={<FaBtc size={40} />} heading='Haptic Transfer' text='Transfer from any valid chain that our application supports to recipients addresses on the respective chain.' page='send' choice={selectSend}/>
           <Card icon={<FaArrowsAltH size={40} />} heading='Haptic DEX' text='Decentralized exchange that empowers users to trade their crypto-currencies.'page='swap' choice={selectSwap}/>
           <Card icon={<FaStore size={40} />} heading='Haptic Market' text='NFT Marketplace that meets the needs of the community. Buy/sell NFTs on the marketplace for 0 fees and select your own royalty policies.'page='marketplace' choice={selectMarketplace}/>
         </div>
