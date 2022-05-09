@@ -1,4 +1,4 @@
-import React from 'react'
+import {React,Link} from 'react'
 import Hands3D from './3DHands';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
@@ -14,6 +14,7 @@ const Home = () => {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: "Entering The Application" });
+        window.location.href="/main";
     }
 
     return (
@@ -28,9 +29,8 @@ const Home = () => {
 
             </div>
             <div className='max-w-[200px] mx-auto px-8  justify-center '>
-
                 <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full" onClick={handleVibrate}>
-                    ENTER APP
+                   ENTER APP
                 </button>
             </div>
             <br />
