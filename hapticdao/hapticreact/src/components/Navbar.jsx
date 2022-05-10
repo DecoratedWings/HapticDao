@@ -72,13 +72,17 @@ const Navbar = () => {
                 </ul>
             </div>
 
+            
             {/* Menu bars */}
             <div onClick={handleClick} className='md:hidden z-10'>
                 {!nav ? <FaBars /> : <FaTimes />}
             </div>
+        
+         
 
             {/* Menu for Mobile */}
             <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-teal-100 flex flex-col justify-center items-center'}>
+            <Auth/>
                 <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectSend}>TRANSFER</Link></li>
                 <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectDashboard}>DASHBOARD</Link></li>
                 <li className='py-6 text-4xl'><Link to='/dao' className='hover:bg-teal-500 hover:text-white' onClick={selectDao}>DAO</Link></li>

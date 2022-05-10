@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useMoralis } from "react-moralis";
+import HapticVibrationService from '../services/HapticVibrationService';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
-const Auth = (props) => {
+const Auth = () => {
+
+    const hapticVibrationService = new HapticVibrationService;
+    const { speak } = useSpeechSynthesis();
 
     const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
     const [button, setButton] = useState(false);
@@ -25,12 +30,21 @@ const Auth = (props) => {
                 .catch(function (error) {
                     console.log(error);
                 });
+            var status = await hapticVibrationService.successVibrate(function (fallback) {
+                console.log("Vibration encountered an error: ", fallback);
+            });
+            speak({ text: "Logged in" });
+
         }
     }
 
     const logOut = async () => {
         await logout();
         console.log("logged out");
+        var status = await hapticVibrationService.failVibrate(function (fallback) {
+            console.log("Vibration encountered an error: ", fallback);
+        });
+        speak({ text: "Logged out" });
     }
 
     return (
