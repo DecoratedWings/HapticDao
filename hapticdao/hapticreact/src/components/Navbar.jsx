@@ -4,6 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import HapticVibrationService from '../services/HapticVibrationService';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import { Link } from 'react-router-dom';
+import Auth from './Auth';
 
 
 
@@ -66,6 +67,8 @@ const Navbar = () => {
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/dao' onClick={selectDao}>DAO</Link></li>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/swap' onClick={selectSwap}>DEX</Link></li>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/marketplace' onClick={selectMarketplace}>MARKET</Link></li>
+                    <Auth/>
+
                 </ul>
             </div>
 
