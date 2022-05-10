@@ -62,12 +62,19 @@ const Navbar = () => {
 
             <div>
                 <ul className='hidden md:flex'>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/send' onClick={selectSend}>TRANSFER</Link></li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/dashboard' onClick={selectDashboard}>DASHBOARD</Link></li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/dao' onClick={selectDao}>DAO</Link></li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/swap' onClick={selectSwap}>DEX</Link></li>
-                    <li className='bg-transparent hover:bg-teal-500 hover:text-white'><Link to='/marketplace' onClick={selectMarketplace}>MARKET</Link></li>
-                    <Auth/>
+                <Link to='/send' onClick={selectSend}>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white rounded-2xl px-2 py-6'>TRANSFER</li></Link>
+                <Link to='/dashboard' onClick={selectDashboard}>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white rounded-2xl px-2 py-6'>DASHBOARD</li></Link>
+                <Link to='/dao' onClick={selectDao}>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white rounded-2xl px-2 py-6'>DAO</li></Link>
+                <Link to='/swap' onClick={selectSwap}>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white rounded-2xl px-2 py-6'>DEX</li></Link>
+                <Link to='/marketplace' onClick={selectMarketplace}>
+                    <li className='bg-transparent hover:bg-teal-500 hover:text-white rounded-2xl px-2 py-6'>MARKET</li></Link>
+                                  
+                    
+                    <li><Auth/></li>
 
                 </ul>
             </div>
