@@ -5,7 +5,6 @@ import Send from './components/Send';
 import Dao from './components/Dao';
 import Marketplace from './components/Marketplace';
 import Swap from './components/Swap';
-import Cards from './components/MainPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './components/Dashboard';
 import MainPage from './components/MainPage';
@@ -24,12 +23,9 @@ function App() {
             <Route path="/marketplace" exact element={<Marketplace/>} />
             <Route path="/dashboard" exact element={<Dashboard/>} />
             <Route path="/main" exact element={<MainPage/>} />
-
         </Routes>
-
       </Router>
-      {/* <Home /> */}
-      {/* <Cards/> */}
+
 
     </div>
   );

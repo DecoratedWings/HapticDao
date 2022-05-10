@@ -73,7 +73,6 @@ const Navbar = () => {
                 <Link to='/marketplace' onClick={selectMarketplace}>
                     <li className='bg-transparent hover:bg-teal-500 hover:text-white rounded-2xl px-2 py-6'>MARKET</li></Link>
                                   
-                    
                     <li><Auth/></li>
 
                 </ul>
