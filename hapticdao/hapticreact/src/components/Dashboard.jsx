@@ -1,10 +1,13 @@
-import React from 'react'
+import {React, useState} from 'react'
 import { FaArrowsAltH, FaBtc, FaStore, FaThList } from 'react-icons/fa';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 
 const Dashboard = () => {
+
+    const { transcript, resetTranscript } = useSpeechRecognition();
+    const [isListening, setIsListening] = useState(false);
 
     // SpeechRecognition.startListening()
     const hapticVibrationService = new HapticVibrationService;
@@ -15,6 +18,28 @@ const Dashboard = () => {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: "Please State The Token." });
+        setTimeout(() => {  console.log("Waiting for user input"); }, 8000);
+
+        // setTimeout(() => {  console.log("Waiting for user input"); }, 2000);
+        // var result =  await getTokenData();
+        // SpeechRecognition.stopListening();
+
+        setIsListening(true);
+        setTimeout(() => {  console.log("Waiting for user input"); }, 2000);
+        SpeechRecognition.startListening();
+        console.log("transcript is: ",transcript);
+        // speak({text: result.toString()})
+        setIsListening(false);
+    }
+
+    async function getTokenData() {
+        if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+            console.log("Browser Does Not Support Listening");
+        }
+        setIsListening(true);
+        SpeechRecognition.startListening();
+        console.log("transcript is: ",transcript);
+        return transcript;
     }
 
     return (

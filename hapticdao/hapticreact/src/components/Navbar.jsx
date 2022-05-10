@@ -9,7 +9,7 @@ import Auth from './Auth';
 
 
 const Navbar = () => {
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
     const [nav, setNav] = useState(false);
     const handleClick = () => setNav(!nav);
