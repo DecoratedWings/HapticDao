@@ -17,19 +17,8 @@ const Dashboard = () => {
         var status = await hapticVibrationService.selectionVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
-        speak({ text: "Please State The Token." });
-        setTimeout(() => {  console.log("Waiting for user input"); }, 8000);
-
-        // setTimeout(() => {  console.log("Waiting for user input"); }, 2000);
-        // var result =  await getTokenData();
-        // SpeechRecognition.stopListening();
-
-        setIsListening(true);
-        setTimeout(() => {  console.log("Waiting for user input"); }, 2000);
-        SpeechRecognition.startListening();
-        console.log("transcript is: ",transcript);
-        // speak({text: result.toString()})
-        setIsListening(false);
+        speak({ text: "Select the Speak button and state which token to retrieve price data for." });
+        resetTranscript();
     }
 
     async function getTokenData() {
@@ -39,7 +28,7 @@ const Dashboard = () => {
         setIsListening(true);
         SpeechRecognition.startListening();
         console.log("transcript is: ",transcript);
-        return transcript;
+        // return transcript;
     }
 
     return (
@@ -47,16 +36,24 @@ const Dashboard = () => {
             <div className='max-w-[500px] mx-auto px-8  justify-center '>
                 <br /><br /><br /> <br />
                 <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Dashboard</h1>
-                <br /><br /><br /> <br />
+                <br /><br />
+                <div className='max-w-[1000px] mx-auto px-20  justify-center '>
+                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
+                   Instructions
+                </button>
             </div>
-
+               
+                <br/><br />
+            </div>
+            
+            <br/>
             <div className='absolute flex flex-col py-8 md:min-w-[760px] 
             mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-500
             border border-slate-300 rounded-xl text-center shadow-xl'>
                 <h2 className='text-slate-300'><b>What Crypto would you like the price of?</b> </h2>
                 <br/>
                 <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
+                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
                    Speak
                 </button>
                 </div>
