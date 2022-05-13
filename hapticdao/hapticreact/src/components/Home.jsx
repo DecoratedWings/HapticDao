@@ -38,12 +38,13 @@ const Home = () => {
 
             
 
-            {/* <iframe src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='500px' height='500px' > */}
-            {/* </iframe> */}
+
 
             {/* Hide 3D Design on Mobile to show menu */}
-            <div className='hidden md:flex'>
-                <Hands3D />
+            <div className='hidden md:flex mx-auto px-8  justify-center'>
+                {/* <Hands3D /> */}
+            <iframe src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='600px' height='600px' >
+            </iframe>
             </div>
 
         </div>
