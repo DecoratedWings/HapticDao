@@ -12,7 +12,7 @@ const Send = () => {
       callback: (coin, recipient, amount) => {
         //MORALIS CODE
         console.log("Coin is: ", coin, " Receiver is: ", recipient, " Amount is: ", amount);
-        TransferWeth(coin, recipient, amount);
+        // init(coin, recipient, amount);
         handleReset();
       },
     },
@@ -27,6 +27,13 @@ const Send = () => {
       command: "get balance",
       callback: () => {
         getUserBalance();
+        console.log("transcript has been reset!");
+      },
+    },
+    {
+      command: "confirm transfer",
+      callback: () => {
+        TransferWeth();
         console.log("transcript has been reset!");
       },
     },
@@ -67,6 +74,23 @@ const Send = () => {
     resetTranscript();
   };
 
+
+  async function TransferWeth (coin, recipient, amount){
+    // sending 0.5 ETH
+    const options = {
+      type: "native",
+      amount: Moralis.Units.ETH("0.5"),
+      receiver: "0x47430D6f05f1A10484B1082ec27883002eA1eE1F",
+    };
+    try{
+      const transaction = await Moralis.transfer(options);
+      const result = await transaction.wait();
+      console.log("RESULT IS : ", result);
+    } catch(e){
+      console.log("Transfer Failed",e);
+    }
+  };
+
   async function getUserBalance() {
     // var user = Moralis.User.current();
     // const balances = await Moralis.Web3.getAllERC20({address:"0x47430D6f05f1A10484B1082ec27883002eA1eE1F"});
@@ -79,25 +103,15 @@ const Send = () => {
     // speak({ text: balances });
   }
 
-  const TransferWeth = (coin, recipient, amount) => {
-    const { fetch, error, isFetching } = useWeb3Transfer({
-      amount: Moralis.Units.Token(amount, 18),
-      receiver: "0x0000000000000000000000000000000000000000",
-      type: "erc20",
-      contractAddress: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-    });
-    console.log("FETCH IS : ", fetch);
+  async function init(coin, recipient, amount) {
+    await Moralis.initPlugins();
+    await Moralis.enableWeb3();
 
-    return (
-      // Use your custom error component to show errors
-      <div>
-        {error && <ReactMoralisError error={error} />}
-        <button onClick={() => fetch()} disabled={isFetching}>
-          Transfer
-        </button>
-      </div>
-    );
-  };
+    console.log("INIT CALLED");
+    await TransferWeth();
+  }
+
+
 
   return (
     <div name='dao' className='w-full h-screen justify-center bg-teal-100'>
