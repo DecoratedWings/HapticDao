@@ -1,4 +1,5 @@
 import React from 'react'
+import DaoCardList from './DaoCardList'
 
 const Dao = () => {
     return (
@@ -8,6 +9,8 @@ const Dao = () => {
                 <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>DAO</h1>
                 <br /><br /><br /> <br />
             </div>
+
+            <DaoCardList />
 
         </div>
     )

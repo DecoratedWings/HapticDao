@@ -1,19 +1,27 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import { useWeb3Transfer, ReactMoralisError, useERC20Balances, useMoralis } from "react-moralis";
 
 const Send = () => {
+  const [amount, setAmount] = useState('');
+  const [display, setDisplay] = useState('') //display for our message
+
 
   const commands = [
+    {
+      command: 'transfer *',          //command the user says, * is any input
+      callback: (name) => setDisplay(`transfer ${name}!`)   //set the display to this response
+    },
     {
       command: "transfer * of * to *",
       callback: (coin, recipient, amount) => {
         //MORALIS CODE
+        setAmount(`${amount}`);
+        // TransferWeth(coin, recipient, amount);
         console.log("Coin is: ", coin, " Receiver is: ", recipient, " Amount is: ", amount);
         // init(coin, recipient, amount);
-        handleReset();
       },
     },
     {
@@ -33,7 +41,7 @@ const Send = () => {
     {
       command: "confirm transfer",
       callback: () => {
-        TransferWeth();
+        TransferWeth("ETH", "BOB", amount);
         console.log("transcript has been reset!");
       },
     },
@@ -74,20 +82,24 @@ const Send = () => {
     resetTranscript();
   };
 
-
-  async function TransferWeth (coin, recipient, amount){
+  async function TransferWeth(coin, recipient, amount) {
     // sending 0.5 ETH
+    console.log("===Values in function===");
+    console.log("===Amount: ", amount);
+    console.log("===Coin: ", coin);
+    console.log("===Recipient: ", recipient);
+
     const options = {
       type: "native",
       amount: Moralis.Units.ETH("0.5"),
       receiver: "0x47430D6f05f1A10484B1082ec27883002eA1eE1F",
     };
-    try{
+    try {
       const transaction = await Moralis.transfer(options);
       const result = await transaction.wait();
       console.log("RESULT IS : ", result);
-    } catch(e){
-      console.log("Transfer Failed",e);
+    } catch (e) {
+      console.log("Transfer Failed", e);
     }
   };
 
@@ -141,6 +153,7 @@ const Send = () => {
             <p className='flex px-4 py-2 text-slate-300'>
               {transcript}</p>
             <br />
+            <p>{display}</p>
 
           </div>
           <div className='flex justify-between flex-wrap px-4'>
