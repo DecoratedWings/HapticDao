@@ -52,4 +52,136 @@ contract USDPriceConverter {
         ) = priceFeedEthUSD.latestRoundData();
         return price;
     }
+
+    function getLatestPriceIlv() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedIlvUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceBtc() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedBtcUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceLink() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedLinkUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceLtc() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedLtcUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceRep() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedRepUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceSnx() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedSnxUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceXau() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedXauUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceTrx() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedTrxUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceXrp() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedXrpUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceZrx() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedZrxUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceXag() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedXagUSD.latestRoundData();
+        return price;
+    }
+
+    function getLatestPriceXtz() public view returns (int) {
+        (
+            /*uint80 roundID*/,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeedXtzUSD.latestRoundData();
+        return price;
+    }
 }
