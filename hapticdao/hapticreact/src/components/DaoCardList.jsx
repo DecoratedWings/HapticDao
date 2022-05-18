@@ -27,6 +27,7 @@ const DaoCardList = () => {
 
   return (
       <div>
+        
     {cardInfo.map(renderCard)}
     </div>
   )
