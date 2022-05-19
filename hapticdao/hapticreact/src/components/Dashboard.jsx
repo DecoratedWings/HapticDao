@@ -4,19 +4,33 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import usdPriceABI from './utils/USDPriceConverter.json';
-import PriceConversionService from '../services/PriceConversionService';
 import { ethers } from "ethers";
 
 
 const Dashboard = () => {
 
-    const { transcript, resetTranscript } = useSpeechRecognition();
-    const [isListening, setIsListening] = useState(false);
-    const [price, setPrice] = useState(``);
+    const commands = [
+        {
+          command: "get the price of ethereum",
+          callback: () => {
+            getPriceEth().then(result=>console.log(result));
+          },
+        },
+        {
+          command: "reset",
+          callback: () => {
+            handleReset();
+            console.log("transcript has been reset!");
+          },
+        },
+      ];
 
-    // SpeechRecognition.startListening()
-    const hapticVibrationService = new HapticVibrationService;
-    const { speak } = useSpeechSynthesis();
+      const { transcript, resetTranscript } = useSpeechRecognition({commands});
+      const [isListening, setIsListening] = useState(false);
+      const [price, setPrice] = useState(``);
+  
+      const hapticVibrationService = new HapticVibrationService;
+      const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
         var status = await hapticVibrationService.selectionVibrate(function (fallback) {
@@ -49,8 +63,18 @@ const Dashboard = () => {
 
     async function getPriceEth(){
         let ethPrice = await usdPriceConverterContract.getLatestPriceEth() / 10**8;
+        speak({ text: `Price of ethereum is ${ethPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Ethereum is : ${ethPrice}`);
         return ethPrice;
     }
+
+    const handleReset = () => {
+        setIsListening(false);
+        SpeechRecognition.stopListening();
+        resetTranscript();
+        setPrice('');
+      };
 
 
 
@@ -65,7 +89,7 @@ const Dashboard = () => {
                    Instructions
                 </button>
             </div>
-                {console.log(getPriceEth().then(result=>console.log(result)))}
+                {/* {console.log(getPriceEth().then(result=>console.log(result)))} */}
                
                 <br/><br />
             </div>
@@ -87,6 +111,7 @@ const Dashboard = () => {
                 </div>
                 <div className='flex justify-between flex-wrap px-4'>
                     <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
+                    <p className='flex px-10 py-2 text-teal-300 text-2xl'>{price}</p>
                 </div>
 
                 </div>
