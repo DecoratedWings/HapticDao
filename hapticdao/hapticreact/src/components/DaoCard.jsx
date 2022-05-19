@@ -11,8 +11,10 @@ const DaoCard = (props) => {
                     <p class="text-sm text-gray-600">{props.description}</p>
                 </div>
                 <br/>
+                <p class="text-sm text-gray-600">Score is:{props.score}</p>
+
                 <div class="m-2">
-                    <a role='button' class="text-white bg-green-600 px-3 py-1 rounded-md hover:bg-green-700">Upvote</a>
+                    <a role='button' class="text-white bg-green-600 px-3 py-1 rounded-md hover:bg-green-700" onClick={null}>Upvote</a>
                     &nbsp;
                     <a role='button' class="text-white bg-red-600 px-3 py-1 rounded-md hover:bg-red-700">Downvote</a>
                 </div>
