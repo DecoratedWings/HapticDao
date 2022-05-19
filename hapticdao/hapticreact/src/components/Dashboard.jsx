@@ -3,11 +3,16 @@ import { FaArrowsAltH, FaBtc, FaStore, FaThList } from 'react-icons/fa';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
+import usdPriceABI from './utils/USDPriceConverter.json';
+import PriceConversionService from '../services/PriceConversionService';
+import { ethers } from "ethers";
+
 
 const Dashboard = () => {
 
     const { transcript, resetTranscript } = useSpeechRecognition();
     const [isListening, setIsListening] = useState(false);
+    const [price, setPrice] = useState(``);
 
     // SpeechRecognition.startListening()
     const hapticVibrationService = new HapticVibrationService;
@@ -34,6 +39,21 @@ const Dashboard = () => {
         });
     }
 
+    ////////////////////////////////////////////////////////////////////////
+    /*{ CODE TO FETCH FROM ORACLE: }*/
+    
+    const contractAddress = "0xBbdf8aB081eafB5Ea25745EBC1271fA9F8817671";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
+    const usdPriceConverterContract = new ethers.Contract(contractAddress, usdPriceABI.abi, signer);
+
+    async function getPriceEth(){
+        let ethPrice = await usdPriceConverterContract.getLatestPriceEth() / 10**8;
+        return ethPrice;
+    }
+
+
+
     return (
         <div name='dashboard' className='w-full h-screen justify-center bg-teal-100'>
             <div className='max-w-[500px] mx-auto px-8  justify-center '>
@@ -45,6 +65,7 @@ const Dashboard = () => {
                    Instructions
                 </button>
             </div>
+                {console.log(getPriceEth().then(result=>console.log(result)))}
                
                 <br/><br />
             </div>
