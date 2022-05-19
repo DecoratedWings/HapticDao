@@ -1,5 +1,5 @@
-import {React, useState} from 'react'
-import { FaArrowsAltH, FaBtc, FaStore, FaThList } from 'react-icons/fa';
+import { React, useState } from 'react'
+import { FaBtc } from 'react-icons/fa';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
@@ -11,26 +11,68 @@ const Dashboard = () => {
 
     const commands = [
         {
-          command: "get the price of ethereum",
-          callback: () => {
-            getPriceEth().then(result=>console.log(result));
-          },
+            command: "get the price of ethereum",
+            callback: () => {
+                getPriceEth().then(result => console.log(result));
+            },
         },
         {
-          command: "reset",
-          callback: () => {
-            handleReset();
-            console.log("transcript has been reset!");
-          },
+            command: "get the price of bitcoin",
+            callback: () => {
+                getPriceBtc().then(result => console.log(result));
+            },
         },
-      ];
+        {
+            command: "get the price of link",
+            callback: () => {
+                getPriceLink().then(result => console.log(result));
+            },
+        },
+        {
+            command: "get the price of ltc",
+            callback: () => {
+                getPriceLtc().then(result => console.log(result));
+            },
+        },
+        {
+            command: "get the price of augur",
+            callback: () => {
+                getPriceRep().then(result => console.log(result));
+            },
+        },
+        {
+            command: "get the price of synthetics",
+            callback: () => {
+                getPriceSnx().then(result => console.log(result));
+            },
+        },
+        {
+            command: "get the price of Tron",
+            callback: () => {
+                getPriceTrx().then(result => console.log(result));
+            },
+        },
+        {
+            command: "get the price of Ripple",
+            callback: () => {
+                getPriceXrp().then(result => console.log(result));
+            },
+        },
+        {
+            command: "reset",
+            callback: () => {
+                handleReset();
+                console.log("transcript has been reset!");
+            },
+        },
+    ];
 
-      const { transcript, resetTranscript } = useSpeechRecognition({commands});
-      const [isListening, setIsListening] = useState(false);
-      const [price, setPrice] = useState(``);
-  
-      const hapticVibrationService = new HapticVibrationService;
-      const { speak } = useSpeechSynthesis();
+    const { transcript, resetTranscript } = useSpeechRecognition({ commands });
+    const [isListening, setIsListening] = useState(false);
+    const [price, setPrice] = useState(``);
+
+    const hapticVibrationService = new HapticVibrationService;
+    const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
         var status = await hapticVibrationService.selectionVibrate(function (fallback) {
@@ -46,7 +88,7 @@ const Dashboard = () => {
         }
         setIsListening(true);
         SpeechRecognition.startListening();
-        console.log("transcript is: ",transcript);
+        console.log("transcript is: ", transcript);
 
         await hapticVibrationService.successVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
@@ -55,18 +97,78 @@ const Dashboard = () => {
 
     ////////////////////////////////////////////////////////////////////////
     /*{ CODE TO FETCH FROM ORACLE: }*/
-    
+
     const contractAddress = "0xBbdf8aB081eafB5Ea25745EBC1271fA9F8817671";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
     const usdPriceConverterContract = new ethers.Contract(contractAddress, usdPriceABI.abi, signer);
 
-    async function getPriceEth(){
-        let ethPrice = await usdPriceConverterContract.getLatestPriceEth() / 10**8;
+    async function getPriceEth() {
+        let ethPrice = await usdPriceConverterContract.getLatestPriceEth() / 10 ** 8;
+        ethPrice = ethPrice.toFixed(2);
         speak({ text: `Price of ethereum is ${ethPrice.toString()}` });
         resetTranscript();
-        setPrice(`Price of Ethereum is : ${ethPrice}`);
+        setPrice(`Price of Ethereum is : $${ethPrice}`);
         return ethPrice;
+    }
+
+    async function getPriceBtc() {
+        let btcPrice = await usdPriceConverterContract.getLatestPriceBtc() / 10 ** 8;
+        btcPrice = btcPrice.toFixed(2);
+        speak({ text: `Price of Bitcoin is ${btcPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Bitcoin is : $${btcPrice}`);
+        return btcPrice;
+    }
+
+    async function getPriceLink() {
+        let linkPrice = await usdPriceConverterContract.getLatestPriceLink() / 10 ** 8;
+        linkPrice = linkPrice.toFixed(2);
+        speak({ text: `Price of Chainlink is ${linkPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Chainlink is : $${linkPrice}`);
+        return linkPrice;
+    }
+
+    async function getPriceLtc() {
+        let ltcPrice = await usdPriceConverterContract.getLatestPriceLtc() / 10 ** 8;
+        ltcPrice = ltcPrice.toFixed(2);
+        speak({ text: `Price of Lite Coin is ${ltcPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Lite Coin is : $${ltcPrice}`);
+        return ltcPrice;
+    }
+    async function getPriceRep() {
+        let repPrice = await usdPriceConverterContract.getLatestPriceRep() / 10 ** 8;
+        repPrice = repPrice.toFixed(2);
+        speak({ text: `Price of Augur is $${repPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Augur is : $${repPrice}`);
+        return repPrice;
+    }
+    async function getPriceSnx() {
+        let snxPrice = await usdPriceConverterContract.getLatestPriceSnx() / 10 ** 8;
+        snxPrice = snxPrice.toFixed(2);
+        speak({ text: `Price of Synthetix is $${snxPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Synthetix is : $${snxPrice}`);
+        return snxPrice;
+    }
+    async function getPriceTrx() {
+        let trxPrice = await usdPriceConverterContract.getLatestPriceTrx() / 10 ** 8;
+        trxPrice = trxPrice.toFixed(2);
+        speak({ text: `Price of Tron is $${trxPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Tron is : $${trxPrice}`);
+        return trxPrice;
+    }
+    async function getPriceXrp() {
+        let xrpPrice = await usdPriceConverterContract.getLatestPriceXrp() / 10 ** 8;
+        xrpPrice = xrpPrice.toFixed(2);
+        speak({ text: `Price of Ripple is $${xrpPrice.toString()}` });
+        resetTranscript();
+        setPrice(`Price of Ripple is : $${xrpPrice}`);
+        return xrpPrice;
     }
 
     const handleReset = () => {
@@ -74,7 +176,7 @@ const Dashboard = () => {
         SpeechRecognition.stopListening();
         resetTranscript();
         setPrice('');
-      };
+    };
 
 
 
@@ -85,37 +187,37 @@ const Dashboard = () => {
                 <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Dashboard</h1>
                 <br /><br />
                 <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
-                   Instructions
-                </button>
-            </div>
+                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
+                        Instructions
+                    </button>
+                </div>
                 {/* {console.log(getPriceEth().then(result=>console.log(result)))} */}
-               
-                <br/><br />
+
+                <br /><br />
             </div>
-            
-            <br/>
+
+            <br />
             <div className='absolute flex flex-col py-8 md:min-w-[760px] 
             mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-500
             border border-slate-300 rounded-xl text-center shadow-xl'>
                 <h2 className='text-slate-300 text-2xl'><b>What Crypto would you like the price of?</b> </h2>
-                <br/>
+                <br />
                 <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
-                   Speak
-                </button>
-                <div className='flex justify-between flex-wrap px-4'>
-                    <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200'/>&nbsp;Token Selected :</p>
-                    <br/>
-                   
-                </div>
-                <div className='flex justify-between flex-wrap px-4'>
-                    <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
-                    <p className='flex px-10 py-2 text-teal-300 text-2xl'>{price}</p>
-                </div>
+                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
+                        Speak
+                    </button>
+                    <div className='flex justify-between flex-wrap px-4'>
+                        <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200' />&nbsp;Token Selected :</p>
+                        <br />
+
+                    </div>
+                    <div className='flex justify-between flex-wrap px-4'>
+                        <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
+                        <p className='flex px-10 py-2 text-teal-300 text-2xl'>{price}</p>
+                    </div>
 
                 </div>
-           
+
             </div>
 
         </div>
