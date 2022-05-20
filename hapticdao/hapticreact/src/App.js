@@ -8,6 +8,7 @@ import Swap from './components/Swap';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './components/Dashboard';
 import MainPage from './components/MainPage';
+import Truflation from './components/Truflation';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/marketplace" exact element={<Marketplace/>} />
             <Route path="/dashboard" exact element={<Dashboard/>} />
             <Route path="/main" exact element={<MainPage/>} />
+            <Route path="/truflation" exact element={<Truflation/>} />
         </Routes>
       </Router>
 
