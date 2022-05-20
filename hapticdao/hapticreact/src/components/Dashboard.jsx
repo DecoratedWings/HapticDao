@@ -5,9 +5,14 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import usdPriceABI from './utils/USDPriceConverter.json';
 import { ethers } from "ethers";
+import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 
 
 const Dashboard = () => {
+
+    const { Moralis } = useMoralis();
+    const { Web3Api } = useMoralisWeb3Api();
+
 
     const commands = [
         {
@@ -72,11 +77,11 @@ const Dashboard = () => {
     const [price, setPrice] = useState(``);
     const [input, setInput] = useState('');
 
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
-        var status = await hapticVibrationService.selectionVibrate(function (fallback) {
+        await hapticVibrationService.selectionVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: "Select the Speak button and state which token to retrieve price data for." });
@@ -105,25 +110,24 @@ const Dashboard = () => {
     const usdPriceConverterContract = new ethers.Contract(contractAddress, usdPriceABI.abi, signer);
 
     async function determineTokenFetch() {
-        let val =0;
         await hapticVibrationService.successVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
-        if(input == 'ethereum' || input == 'eth'){
+        if(input === 'ethereum' || input === 'eth'){
             getPriceEth().then(result=>console.log(result));
-        } else if(input == 'bitcoin' || input == 'btc'){
+        } else if(input === 'bitcoin' || input === 'btc'){
             getPriceBtc().then(result=>console.log(result));
-        } else if(input == 'chainlink' || input == 'link'){
+        } else if(input === 'chainlink' || input === 'link'){
             getPriceLink().then(result=>console.log(result));
-        } else if(input == 'litecoin' || input == 'ltc'){
+        } else if(input === 'litecoin' || input === 'ltc'){
             getPriceLtc().then(result=>console.log(result));
-        } else if(input == 'ripple' || input == 'xrp'){
+        } else if(input === 'ripple' || input === 'xrp'){
             getPriceXrp().then(result=>console.log(result));
-        } else if(input == 'augur' || input == 'rep'){
+        } else if(input === 'augur' || input === 'rep'){
             getPriceRep().then(result=>console.log(result));
-        } else if(input == 'synthetix' || input == 'snx'){
+        } else if(input === 'synthetix' || input === 'snx'){
             getPriceSnx().then(result=>console.log(result));
-        } else if(input == 'tron' || input == 'trx'){
+        } else if(input === 'tron' || input === 'trx'){
             getPriceTrx().then(result=>console.log(result));
         }
     }
@@ -204,7 +208,27 @@ const Dashboard = () => {
         setPrice('');
     };
 
+    async function getUserBalance() {
+        await Moralis.initPlugins();
+        await Moralis.enableWeb3();
+        
+        const currentUser = Moralis.User.current();
+        if(!currentUser){
+            currentUser = Moralis.authenticate();
+        }
+        const balances = await Moralis.Web3API.account.getTokenBalances();
+        console.log(balances);
+    }
 
+    const fetchTokenBalances = async () => {
+        const options = {
+            chain: 'rinkeby',
+        }
+        const balances = await Moralis.Web3API.account.getTokenBalances(options);
+        let result = Number(balances[0].balance) / 10**18;
+        console.log(result);
+        speak({text: `Porfolio balance is: ${result.toString()} chainlink`})
+      };
 
     return (
         <div name='dashboard' className='w-full h-screen justify-center bg-teal-100'>
@@ -231,7 +255,11 @@ const Dashboard = () => {
                 <div className='max-w-[1000px] mx-auto px-20  justify-center '>
                     <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
                         Speak
+                    </button> &nbsp;
+                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
+                        Get Portfolio Balance
                     </button>
+
                     <br/><br/>
 
                     <div className='flex justify-center flex-wrap px-4 items-center'>
@@ -250,6 +278,9 @@ const Dashboard = () => {
                 </div>
 
             </div>
+            
+
+            
 
         </div>
     )
