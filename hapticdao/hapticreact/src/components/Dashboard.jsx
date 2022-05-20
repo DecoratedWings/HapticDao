@@ -5,14 +5,12 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import usdPriceABI from './utils/USDPriceConverter.json';
 import { ethers } from "ethers";
-import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
+import { useMoralis } from 'react-moralis';
 
 
 const Dashboard = () => {
 
     const { Moralis } = useMoralis();
-    const { Web3Api } = useMoralisWeb3Api();
-
 
     const commands = [
         {
