@@ -225,9 +225,15 @@ const Dashboard = () => {
             chain: 'rinkeby',
         }
         const balances = await Moralis.Web3API.account.getTokenBalances(options);
-        let result = Number(balances[0].balance) / 10**18;
-        console.log(result);
-        speak({text: `Porfolio balance is: ${result.toString()} chainlink`})
+        const balance = await Moralis.Web3API.account.getNativeBalance(options);
+
+        // let balance = Number(balances[0].balance) / 10**18;
+        console.log("user balances: "+ balances);
+        speak({text: "User has the following token balances in their connected wallet address."})
+        for(let i = 0; i < balances.length; i++){
+            console.log(balances[i]);
+            speak({text: `Porfolio balance of ${balances[i].name} is: ${(Number(balances[i].balance) / 10**18).toString()}.`});
+        }
       };
 
     return (
