@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaArrowsAltH, FaBtc, FaStore, FaThList } from 'react-icons/fa';
+import { FaArrowsAltH, FaBtc, FaStore, FaThList, FaVoteYea, FaRegChartBar } from 'react-icons/fa';
 import Card from './Card';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
@@ -42,6 +42,12 @@ async function selectDashboard() {
     });
     speak({ text: "Dashboard" });
 }
+async function selectTruflation() {
+  var status = await hapticVibrationService.selectionVibrate(function (fallback) {
+      console.log("Vibration encountered an error: ", fallback);
+  });
+  speak({ text: "true-flay-shun" });
+}
 
   return (
 
@@ -59,9 +65,11 @@ async function selectDashboard() {
 
           {/* Card */}
           <Card icon={<FaThList size={40} />} heading='Haptic Dashboard' text='Dashboard For viewing your tokens and NFTs' page='dashboard' choice={selectDashboard}/>
-          <Card icon={<FaBtc size={40} />} heading='Haptic Transfer' text='Transfer from any valid chain that our application supports to recipients addresses on the respective chain.' page='send' choice={selectSend}/>
-          <Card icon={<FaArrowsAltH size={40} />} heading='Haptic DEX' text='Decentralized exchange that empowers users to trade their crypto-currencies.'page='swap' choice={selectSwap}/>
-          <Card icon={<FaStore size={40} />} heading='Haptic Market' text='NFT Marketplace that meets the needs of the community. Buy/sell NFTs on the marketplace for 0 fees and select your own royalty policies.'page='marketplace' choice={selectMarketplace}/>
+          <Card icon={<FaVoteYea size={40} />} heading='Haptic Dao' text='Voting page for updates to the applcation. Can upvote or downvote on features that should be prioritized for development.'page='dao' choice={selectDao}/>
+          {/* <Card icon={<FaBtc size={40} />} heading='Haptic Transfer' text='Transfer from any valid chain that our application supports to recipients addresses on the respective chain.' page='send' choice={selectSend}/> */}
+          <Card icon={<FaArrowsAltH size={40} />} heading='Haptic DEX' text='Decentralized exchange that empowers users to trade their crypto-currencies with ease.'page='swap' choice={selectSwap}/>
+          <Card icon={<FaRegChartBar size={40} />} heading='Haptic Truflation' text="Powered by Truflation's API running on Chainlink, haptic truflation displays and verbally states live, up-to-date inflation data."page='truflation' choice={selectTruflation}/>
+          {/* <Card icon={<FaStore size={40} />} heading='Haptic Market' text='NFT Marketplace that meets the needs of the community. Buy/sell NFTs on the marketplace for 0 fees and select your own royalty policies.'page='marketplace' choice={selectMarketplace}/> */}
         </div>
       </div>
 
