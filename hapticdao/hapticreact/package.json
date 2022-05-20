@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@splinetool/react-spline": "^2.1.0",
     "@splinetool/runtime": "^0.9.42",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.20.5",
     "expo": "^45.0.1",
     "expo-haptics": "^11.2.0",
     "moralis": "^1.7.0",
