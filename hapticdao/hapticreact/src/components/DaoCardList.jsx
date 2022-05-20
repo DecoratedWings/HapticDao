@@ -23,6 +23,16 @@ const DaoCardList = () => {
             description: "Improvements to the spacing and mobile UI design",
             score: score3
         },
+        {
+          title: "Host Cards on an endpoint",
+          description: "Allow users to get/post requests to json list of improvements",
+          score: score3
+        },
+        {
+          title: "Database of Users",
+          description: "Add DB of Users so can transfer funds between users in your contacts",
+          score: score3
+        },
     ]
 
     const renderCard = (card, index) => {
@@ -34,7 +44,7 @@ const DaoCardList = () => {
       };
 
   return (
-      <div className='grid grid-cols-2 col-auto'>
+      <div className='grid grid-cols-3 col-span-1'>
         
     {cardInfo.map(renderCard)}
     </div>
