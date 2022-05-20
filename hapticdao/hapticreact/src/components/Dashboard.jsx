@@ -70,6 +70,7 @@ const Dashboard = () => {
     const { transcript, resetTranscript } = useSpeechRecognition({ commands });
     const [isListening, setIsListening] = useState(false);
     const [price, setPrice] = useState(``);
+    const [input, setInput] = useState('');
 
     const hapticVibrationService = new HapticVibrationService;
     const { speak } = useSpeechSynthesis();
@@ -102,6 +103,31 @@ const Dashboard = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
     const usdPriceConverterContract = new ethers.Contract(contractAddress, usdPriceABI.abi, signer);
+
+    async function determineTokenFetch() {
+        let val =0;
+        await hapticVibrationService.successVibrate(function (fallback) {
+            console.log("Vibration encountered an error: ", fallback);
+        });
+        if(input == 'ethereum' || input == 'eth'){
+            getPriceEth().then(result=>console.log(result));
+        } else if(input == 'bitcoin' || input == 'btc'){
+            getPriceBtc().then(result=>console.log(result));
+        } else if(input == 'chainlink' || input == 'link'){
+            getPriceLink().then(result=>console.log(result));
+        } else if(input == 'litecoin' || input == 'ltc'){
+            getPriceLtc().then(result=>console.log(result));
+        } else if(input == 'ripple' || input == 'xrp'){
+            getPriceXrp().then(result=>console.log(result));
+        } else if(input == 'augur' || input == 'rep'){
+            getPriceRep().then(result=>console.log(result));
+        } else if(input == 'synthetix' || input == 'snx'){
+            getPriceSnx().then(result=>console.log(result));
+        } else if(input == 'tron' || input == 'trx'){
+            getPriceTrx().then(result=>console.log(result));
+        }
+    }
+
 
     async function getPriceEth() {
         let ethPrice = await usdPriceConverterContract.getLatestPriceEth() / 10 ** 8;
@@ -206,12 +232,17 @@ const Dashboard = () => {
                     <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
                         Speak
                     </button>
-                    <div className='flex justify-between flex-wrap px-4'>
-                        <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200' />&nbsp;Token Selected :</p>
-                        <br />
+                    <br/><br/>
 
+                    <div className='flex justify-center flex-wrap px-4 items-center'>
+                        <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200' />&nbsp;Token Selected :</p>
                     </div>
-                    <div className='flex justify-between flex-wrap px-4'>
+                    <br/>
+                    <input value={input} onInput={e => setInput(e.target.value)} className="rounded-full"/>&nbsp;
+                    
+                    <button onClick={determineTokenFetch} class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full">Submit</button>
+
+                    <div className='flex justify-center flex-wrap px-4'>
                         <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
                         <p className='flex px-10 py-2 text-teal-300 text-2xl'>{price}</p>
                     </div>
