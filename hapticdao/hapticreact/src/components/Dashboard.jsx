@@ -132,7 +132,7 @@ const Dashboard = () => {
     async function getPriceEth() {
         let ethPrice = await usdPriceConverterContract.getLatestPriceEth() / 10 ** 8;
         ethPrice = ethPrice.toFixed(2);
-        speak({ text: `Price of ethereum is ${ethPrice.toString()}` });
+        speak({ text: `Price of uh-thee-ree-um is ${ethPrice.toString()}` });
         resetTranscript();
         setPrice(`Price of Ethereum is : $${ethPrice}`);
         return ethPrice;
