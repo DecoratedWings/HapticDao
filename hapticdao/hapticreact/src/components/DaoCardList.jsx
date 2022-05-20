@@ -34,7 +34,7 @@ const DaoCardList = () => {
       };
 
   return (
-      <div>
+      <div className='grid grid-cols-2 col-auto'>
         
     {cardInfo.map(renderCard)}
     </div>
