@@ -7,32 +7,32 @@ const TruflationCardList = () => {
         {
             title: "Food",
             emoji:"🌾",
-            description: "14",
+            description: "14%",
         },
         {
             title: "Housing",
             emoji:"🏠",
-            description: "15",
+            description: "15%",
           },
         {
             title: "Transportation ",
             emoji:"🚗",
-            description: "16",
+            description: "16%",
         },
         {
           title: "Medical ",
           emoji:"🏥",
-          description: "17",
+          description: "17%",
         },
         {
           title: "Education ",
           emoji:"📚",
-          description: "18",
+          description: "18%",
         },
         {
           title: "Personal Items",
           emoji:"👨👩",
-          description: "19",
+          description: "19%",
         },
     ]
 
