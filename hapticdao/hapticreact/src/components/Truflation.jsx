@@ -19,7 +19,7 @@ const Truflation = () => {
   async function getYoYInflation() {
     console.log("calling ... ")
     truflationContract.yoyInflation().then(result=>{
-      setYoyInflation(Number(result).toFixed(3));
+      setYoyInflation(Number(result).toFixed(2));
       console.log("inflation is: ",result)
     });
   }
@@ -84,7 +84,7 @@ async function sync(){
             <div class="w-80 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl" onClick={readInflation}>
             <div class="p-2">
                 {/* <!-- Heading --> */}
-                <h2 class="font-bold text-lg mb-2 ">Yoy Inflation: {yoyInflation} %</h2>
+                <h2 class="font-bold mb-2 text-teal-500 text-2xl ">Yoy Inflation: {yoyInflation} %</h2>
             </div>
 
         </div>
@@ -92,14 +92,7 @@ async function sync(){
         
             <br />
 
-        
-          <div className='flex justify-between flex-wrap px-4'>
-            <p className='flex px-10 py-2 text-teal-300 text-2xl'>{ }</p>
-          </div>
-
         </div>
-
-      
 
       </div>
 

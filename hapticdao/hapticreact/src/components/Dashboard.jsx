@@ -6,7 +6,7 @@ import HapticVibrationService from '../services/HapticVibrationService';
 import usdPriceABI from './utils/USDPriceConverter.json';
 import { ethers } from "ethers";
 import { useMoralis } from 'react-moralis';
-
+import CL from '../assets/chainlink.png';
 
 const Dashboard = () => {
 
@@ -111,22 +111,22 @@ const Dashboard = () => {
         await hapticVibrationService.successVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
-        if(input === 'ethereum' || input === 'eth'){
-            getPriceEth().then(result=>console.log(result));
-        } else if(input === 'bitcoin' || input === 'btc'){
-            getPriceBtc().then(result=>console.log(result));
-        } else if(input === 'chainlink' || input === 'link'){
-            getPriceLink().then(result=>console.log(result));
-        } else if(input === 'litecoin' || input === 'ltc'){
-            getPriceLtc().then(result=>console.log(result));
-        } else if(input === 'ripple' || input === 'xrp'){
-            getPriceXrp().then(result=>console.log(result));
-        } else if(input === 'augur' || input === 'rep'){
-            getPriceRep().then(result=>console.log(result));
-        } else if(input === 'synthetix' || input === 'snx'){
-            getPriceSnx().then(result=>console.log(result));
-        } else if(input === 'tron' || input === 'trx'){
-            getPriceTrx().then(result=>console.log(result));
+        if (input === 'ethereum' || input === 'eth') {
+            getPriceEth().then(result => console.log(result));
+        } else if (input === 'bitcoin' || input === 'btc') {
+            getPriceBtc().then(result => console.log(result));
+        } else if (input === 'chainlink' || input === 'link') {
+            getPriceLink().then(result => console.log(result));
+        } else if (input === 'litecoin' || input === 'ltc') {
+            getPriceLtc().then(result => console.log(result));
+        } else if (input === 'ripple' || input === 'xrp') {
+            getPriceXrp().then(result => console.log(result));
+        } else if (input === 'augur' || input === 'rep') {
+            getPriceRep().then(result => console.log(result));
+        } else if (input === 'synthetix' || input === 'snx') {
+            getPriceSnx().then(result => console.log(result));
+        } else if (input === 'tron' || input === 'trx') {
+            getPriceTrx().then(result => console.log(result));
         }
     }
 
@@ -209,9 +209,9 @@ const Dashboard = () => {
     async function getUserBalance() {
         await Moralis.initPlugins();
         await Moralis.enableWeb3();
-        
+
         const currentUser = Moralis.User.current();
-        if(!currentUser){
+        if (!currentUser) {
             currentUser = Moralis.authenticate();
         }
         const balances = await Moralis.Web3API.account.getTokenBalances();
@@ -226,16 +226,16 @@ const Dashboard = () => {
         const balance = await Moralis.Web3API.account.getNativeBalance(options);
 
         // let balance = Number(balances[0].balance) / 10**18;
-        console.log("user balances: "+ balances);
-        speak({text: "User has the following token balances in their connected wallet address."})
-        for(let i = 0; i < balances.length; i++){
+        console.log("user balances: " + balances);
+        speak({ text: "User has the following token balances in their connected wallet address." })
+        for (let i = 0; i < balances.length; i++) {
             console.log(balances[i]);
-            speak({text: `Porfolio balance of ${balances[i].name} is: ${(Number(balances[i].balance) / 10**18).toString()}.`});
+            speak({ text: `Porfolio balance of ${balances[i].name} is: ${(Number(balances[i].balance) / 10 ** 18).toString()}.` });
         }
-      };
+    };
 
     return (
-        <div name='dashboard' className='w-full h-screen justify-center bg-teal-100'>
+        <div name='dashboard' className='w-full h-[130vh] justify-center bg-teal-100'>
             <div className='max-w-[500px] mx-auto px-8  justify-center '>
                 <br /><br /><br /> <br />
                 <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Dashboard</h1>
@@ -251,40 +251,50 @@ const Dashboard = () => {
             </div>
 
             <br />
-            <div className='absolute flex flex-col py-8 md:min-w-[760px] 
+            <div className='mx-4 space-y-60'>
+                <div className='absolute flex flex-col py-8 md:min-w-[760px] 
             mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-500
             border border-slate-300 rounded-xl text-center shadow-xl'>
-                <h2 className='text-slate-300 text-2xl'><b>What Crypto would you like the price of?</b> </h2>
-                <br />
-                <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
-                        Speak
-                    </button> &nbsp;
-                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
-                        Get Portfolio Balance
-                    </button>
+                    <h2 className='text-slate-300 text-2xl'><b>What Crypto would you like the price of?</b> </h2>
+                    <br />
+                    <div className='max-w-[1000px] mx-auto px-20  justify-center '>
+                        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
+                            Speak
+                        </button> &nbsp;
+                        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
+                            Get Portfolio Balance
+                        </button>
 
-                    <br/><br/>
+                        <br /><br />
 
-                    <div className='flex justify-center flex-wrap px-4 items-center'>
-                        <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200' />&nbsp;Token Selected :</p>
-                    </div>
-                    <br/>
-                    <input value={input} onInput={e => setInput(e.target.value)} className="rounded-full"/>&nbsp;
-                    
-                    <button onClick={determineTokenFetch} class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full">Submit</button>
+                        <div className='flex justify-center flex-wrap px-4 items-center'>
+                            <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200' />&nbsp;Token Selected :</p>
+                        </div>
+                        <br />
+                        <input value={input} onInput={e => setInput(e.target.value)} className="rounded-full" />&nbsp;
 
-                    <div className='flex justify-center flex-wrap px-4'>
-                        <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
-                        <p className='flex px-10 py-2 text-teal-300 text-2xl'>{price}</p>
+                        <button onClick={determineTokenFetch} class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full">Submit</button>
+
+                        <div className='flex justify-center flex-wrap px-4'>
+                            <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
+                            <p className='flex px-10 py-2 text-teal-300 text-2xl'>{price}</p>
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
-            
+            <br />
+            <br />
 
-            
+            <div className='items-center justify-center'>
+                <div className='max-w-[500px] mx-auto px-8  justify-center '>
+
+                    <img className=' space-y-3 py-80 px-4 max-w-md max-h-md' src={CL} />
+                </div>
+            </div>
+
 
         </div>
     )
