@@ -14,6 +14,7 @@ const DaoCard = (props) => {
         speak({ text: props.description });
         console.log(props.description);
     }
+    
 
     return (
         <div className="w-full py-2 gap-4 flex-wrap flex justify-center items-center bg-teal-100" onClick={readCard}>
