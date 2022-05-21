@@ -1,8 +1,9 @@
 import React from 'react'
+import TruflationCardList from './TruflationCardList';
 
 const Truflation = () => {
   return (
-    <div name='dao' className='w-full h-screen justify-center bg-teal-100'>
+    <div name='dao' className='w-full h-[110vh] justify-center bg-teal-100'>
       <div className='max-w-[300px] mx-auto px-8  justify-center '>
         <br /><br /><br /> <br />
         <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Truflation</h1>
@@ -16,6 +17,8 @@ const Truflation = () => {
       </div>
 
       <br />
+      <div class="mx-4 space-y-60">
+
       <div className='absolute flex flex-col py-8 md:min-w-[760px] 
             mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-500
             border border-slate-300 rounded-xl text-center shadow-xl'>
@@ -37,7 +40,19 @@ const Truflation = () => {
 
         </div>
 
+      
+
       </div>
+
+      <div className='absolute flex flex-col py-8 md:min-w-[760px] 
+            mx-1 md:left-1/2 transform md:-translate-x-1/2'>
+            <TruflationCardList/>
+
+     </div>
+
+
+     </div>
+
 
     </div>
   )
