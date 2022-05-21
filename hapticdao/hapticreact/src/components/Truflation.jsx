@@ -1,6 +1,5 @@
 import React, { useEffect, useState }  from 'react'
 import TruflationCardList from './TruflationCardList';
-import TruflationCard from './TruflationCard';
 import truflationYoyABI from './utils/TruflationContract.json';
 import { ethers } from "ethers";
 import HapticVibrationService from '../services/HapticVibrationService';
@@ -20,7 +19,7 @@ const Truflation = () => {
   async function getYoYInflation() {
     console.log("calling ... ")
     truflationContract.yoyInflation().then(result=>{
-      setYoyInflation(Number(result).toFixed(2));
+      setYoyInflation(Number(result).toFixed(3));
       console.log("inflation is: ",result)
     });
   }
@@ -41,6 +40,17 @@ async function instructions(){
       console.log("Vibration encountered an error: ", fallback);
   });
   speak({ text: `For each inflation category, select its corresponding card in order to hear its respective inflation data.` });
+}
+
+async function sync(){
+  await hapticVibrationService.successVibrate(function (fallback) {
+      console.log("Vibration encountered an error: ", fallback);
+  });
+  speak({ text: `Syncing the latest inflation data from chainlink oracle.` });
+  truflationContract.requestYoyInflation().then(result=>{
+    console.log("Completed request");
+    speak({text: 'Requested data sync has been completed. Please refresh the page.'});
+  })
 }
 
   return (
@@ -66,8 +76,8 @@ async function instructions(){
         <h2 className='text-slate-300 text-2xl'><b>Inflation Data Powered by chainlink oracles. <br/>Currently fetches Yoy inflation<br /></b> </h2>
         <br />
         <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-          <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={null}>
-            Fetch Inflation
+          <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={sync}>
+            Sync Inflation
           </button>
           <br/> <br/>   
 
