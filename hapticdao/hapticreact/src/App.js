@@ -17,11 +17,11 @@ function App() {
       <Router>
        <Navbar />
         <Routes>
-            <Route  path="/send" exact element={<Send/>} />
+            {/* <Route  path="/send" exact element={<Send/>} /> */}
             <Route  path="/"  exact element={<Home/>} />
             <Route path="/dao" exact element={<Dao/>} />
-            <Route path="/swap" exact element={<Swap/>} />
-            <Route path="/marketplace" exact element={<Marketplace/>} />
+            <Route path="/swap" exact element={<Swap/>} /> //DEX
+            {/* <Route path="/marketplace" exact element={<Marketplace/>} /> */}
             <Route path="/dashboard" exact element={<Dashboard/>} />
             <Route path="/main" exact element={<MainPage/>} />
             <Route path="/truflation" exact element={<Truflation/>} />

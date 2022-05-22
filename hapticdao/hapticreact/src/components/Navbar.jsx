@@ -98,9 +98,11 @@ const Navbar = () => {
             <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-teal-100 flex flex-col justify-center items-center'}>
             <Auth/>
                 {/* <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectSend}>TRANSFER</Link></li> */}
-                <li className='py-6 text-4xl'><Link to='/send' className='hover:bg-teal-500 hover:text-white' onClick={selectDashboard}>DASHBOARD</Link></li>
+                <li className='py-6 text-4xl'><Link to='/dashboard' className='hover:bg-teal-500 hover:text-white' onClick={selectDashboard}>DASHBOARD</Link></li>
                 <li className='py-6 text-4xl'><Link to='/dao' className='hover:bg-teal-500 hover:text-white' onClick={selectDao}>DAO</Link></li>
+                <li className='py-6 text-4xl'><Link to='/truflation' className='hover:bg-teal-500 hover:text-white' onClick={selectTruflation}>Truflation</Link></li>
                 <li className='py-6 text-4xl'><Link to='/swap' className='hover:bg-teal-500 hover:text-white' onClick={selectSwap}>DEX</Link></li>
+
                 {/* <li className='py-6 text-4xl'><Link to='/marketplace' className='hover:bg-teal-500 hover:text-white' onClick={selectMarketplace}>MARKET</Link></li> */}
             </ul>
 
