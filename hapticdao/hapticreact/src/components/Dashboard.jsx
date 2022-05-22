@@ -224,7 +224,7 @@ const Dashboard = () => {
         }
         const balances = await Moralis.Web3API.account.getTokenBalances(options);
         const balance = await Moralis.Web3API.account.getNativeBalance(options);
-
+        
         // let balance = Number(balances[0].balance) / 10**18;
         console.log("user balances: " + balances);
         speak({ text: "User has the following token balances in their connected wallet address." })
