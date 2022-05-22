@@ -9,9 +9,27 @@ const Swap = () => {
     const [amount, setAmount] = useState('');
     const { Moralis } = useMoralis();
 
+    //Tokens we support based on 1INCH offerings on eth chain: 
     let tokenMap = new Map();
-    tokenMap.set('pool', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f');
+    tokenMap.set('geome', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f'); //gOhm
+    tokenMap.set('giong', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f'); //gOhm
+    tokenMap.set('gion', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f'); //gOhm
+    tokenMap.set('g home', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f'); //gOhm
+    tokenMap.set('ohm', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f'); //gOhm
+    tokenMap.set('home', '0x0ab87046fbb341d058f17cbc4c1133f25a20a52f'); //gOhm
+
     tokenMap.set('die', '0x6b175474e89094c44da98b954eedeac495271d0f'); //dai lol
+    // tokenMap.set('yearn', '0x5dbcf33d8c2e976c6b560249878e6f1491bca25c'); //yearn yUSD
+    tokenMap.set('pool', '0x0cec1a9154ff802e7934fc916ed7ca50bde6844e'); 
+    tokenMap.set('sushi', '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2');
+    tokenMap.set('Morpheus', '0x7b0c06043468469967dba22d1af33d77d44056c8');
+    //Matic
+    tokenMap.set('Matic', '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0');
+    tokenMap.set('Maddock', '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0');
+
+    tokenMap.set('robo nomics', '0x7de91b204c1c737bcee6f000aaa6569cf7061cb7');
+    tokenMap.set('Ave', '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'); //aave
+    tokenMap.set('math', '0x08d967bb0134f2d07f7cfb6e246680c53927dd30');
 
 
     const commands = [
@@ -100,18 +118,7 @@ const Swap = () => {
         speak({ text: `Amount of ${token2} you would be receiving for ${amount} of ${token1} is: ${quote.toTokenAmount}` });
 
       }
-      //Tokens we support: 
-    //  "0x5dbcf33d8c2e976c6b560249878e6f1491bca25c" ->yUSD yearn
-    // 0x0ab87046fbb341d058f17cbc4c1133f25a20a52f -> gOhm
-    // 0x0cec1a9154ff802e7934fc916ed7ca50bde6844e --> Pool
-    //"0x6b175474e89094c44da98b954eedeac495271d0f" -->DAI
-    //"0x6b3595068778dd592e39a122f4f5a5cf09c90fe2" -->sushi
-    //"0x7b0c06043468469967dba22d1af33d77d44056c8" --> mrph morpheus network
-    //"0x7b3d36eb606f873a75a6ab68f8c999848b04f935" --> loot
-    //"0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0" --> matic
-    //"0x7de91b204c1c737bcee6f000aaa6569cf7061cb7" --> robonomics
-    //"0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9" --> AAVE
-    //"0x08d967bb0134f2d07f7cfb6e246680c53927dd30" --> MATH
+  
 
 
 
