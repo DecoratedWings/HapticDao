@@ -6,7 +6,6 @@ import Auth from './Auth';
 
 const Home = () => {
     const hapticVibrationService = new HapticVibrationService;
-
     const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
