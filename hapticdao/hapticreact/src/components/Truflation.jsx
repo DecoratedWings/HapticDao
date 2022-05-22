@@ -11,7 +11,7 @@ const Truflation = () => {
   const hapticVibrationService = new HapticVibrationService;
   const { speak } = useSpeechSynthesis();
 
-  const contractAddress = "0x5fc949612bCf622A63C4D66B1aA132728Cc0eb1C";
+  const contractAddress = "0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const truflationContract = new ethers.Contract(contractAddress, truflationYoyABI, signer);
@@ -54,7 +54,7 @@ async function sync(){
 }
 
   return (
-    <div name='dao' className='w-full h-[110vh] justify-center bg-teal-100'>
+    <div name='dao' className='w-full h-[130vh] justify-center bg-teal-100'>
       <div className='max-w-[300px] mx-auto px-8  justify-center '>
         <br /><br /><br /> <br />
         <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Truflation</h1>

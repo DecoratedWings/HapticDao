@@ -28,6 +28,7 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
     https://market.link/nodes/969f6cd9-40f3-4dd6-aa02-4fa8c8421480/integrations
    */
 
+  //Job Id changed on deployed contract to : e5b99e0a2f79402998187b11f37c56a6
   constructor() ConfirmedOwner(msg.sender) {
     setPublicChainlinkToken();
     oracleId = 0x17dED59fCd940F0a40462D52AAcD11493C6D8073;
