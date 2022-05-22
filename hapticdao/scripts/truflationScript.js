@@ -9,7 +9,7 @@ async function main() {
         console.log("Contract deployed to:", truflationDataFetcherContract.address);
   
 }
-//Contract deployed to: 0x067fC1B6aab213a961d82B5B28f892F9b5Bc14e2
+//Contract deployed to: 0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD
 
 
 

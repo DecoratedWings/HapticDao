@@ -180,6 +180,15 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
     return sendChainlinkRequestTo(oracleId, req, fee);
   }
 
+  function simulateRequestForCategoryInflations() public {
+      foodInflation="13.16";
+      housingInflation="12.14";
+      transportationInflation="21.40";
+      medicalInflation="3.26";
+      educationInflation="1.41";
+      personalItemInflation="5.01";
+  }
+
 
   function changeOracle(address _oracle) public onlyOwner {
     oracleId = _oracle;
