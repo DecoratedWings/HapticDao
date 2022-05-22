@@ -54,6 +54,12 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
     yoyInflation = string(_inflation);
   }
 
+  /**
+    Truflation APIs not available for categories below currently. 
+    Team has indicated that we are to use placeholders for the time being. 
+    Will update once available.
+   */
+
     //Food
   function requestFoodInflation() public returns (bytes32 requestId) {
     Chainlink.Request memory req = buildChainlinkRequest(
@@ -153,7 +159,8 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
     req.add("abi", "json");
     return sendChainlinkRequestTo(oracleId, req, fee);
   }
-  //BRUH
+  
+  //Personal Items
   function fulfillpersonalItemInflation(
     bytes32 _requestId,
     bytes memory _inflation
