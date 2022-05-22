@@ -8,6 +8,7 @@ const Swap = () => {
 
     const [amount, setAmount] = useState('');
     const { Moralis } = useMoralis();
+    let dex = Moralis.Plugins.oneInch;
 
     //Tokens we support based on 1INCH offerings on eth chain: 
     let tokenMap = new Map();
@@ -35,8 +36,8 @@ const Swap = () => {
     const commands = [
         {
             command: "swap * of * to *",
-            callback: () => {
-                console.log("hello");
+            callback: (amount, token1, token2) => {
+                swapTokens(amount, token1, token2).then(result=>console.log(result));
             },
         },
         {
@@ -96,8 +97,8 @@ const Swap = () => {
         setIsListening(true);
         SpeechRecognition.startListening();
         console.log("transcript is: ", transcript);
-
-        await hapticVibrationService.successVibrate(function (fallback) {
+   
+        await hapticVibrationService.warningVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
     }
@@ -119,7 +120,33 @@ const Swap = () => {
 
       }
   
+      async function swapTokens(amount, token1, token2) {
 
+        const currentUser = Moralis.User.current();
+        if (!currentUser) {
+            currentUser = Moralis.authenticate();
+        }
+
+        console.log("Current User is : ", currentUser);
+
+        const options = {chain: "eth",
+                            fromTokenAddress: tokenMap.get(token1),
+                            toTokenAddress: tokenMap.get(token2),
+                            amount: Number(amount),
+                            fromAddress: currentUser.get("ethAddress"),
+                            slippage: 1
+                        }
+                        
+        let receipt = await dex.swap(options)
+        console.log(receipt);
+
+        await hapticVibrationService.warningVibrate(function (fallback) {
+            console.log("Vibration encountered an error: ", fallback);
+        });
+        speak({ text: `Transaction is being processed. 
+        Upon completion you may check your wallet balance on the dashboard screen.` });
+
+      }
 
 
 

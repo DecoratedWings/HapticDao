@@ -9,7 +9,7 @@ class HapticVibrationService {
     return true;
   }
 
-  async failVibrate(){
+  async warningVibrate(){
     navigator.vibrate([800,50,400]);
     return true;
   }
