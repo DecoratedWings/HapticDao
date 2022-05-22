@@ -54,6 +54,126 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
     yoyInflation = string(_inflation);
   }
 
+    //Food
+  function requestFoodInflation() public returns (bytes32 requestId) {
+    Chainlink.Request memory req = buildChainlinkRequest(
+      bytes32(bytes(jobId)),
+      address(this),
+      this.fulfillFoodInflation.selector
+    );
+    req.add("service", "truflation/current");
+    req.add("keypath", "foodInflation");
+    req.add("abi", "json");
+    return sendChainlinkRequestTo(oracleId, req, fee);
+  }
+
+  function fulfillFoodInflation(
+    bytes32 _requestId,
+    bytes memory _inflation
+  ) public recordChainlinkFulfillment(_requestId) {
+    foodInflation = string(_inflation);
+  }
+
+  //Housing
+  function requestHousingInflation() public returns (bytes32 requestId) {
+    Chainlink.Request memory req = buildChainlinkRequest(
+      bytes32(bytes(jobId)),
+      address(this),
+      this.fulfillHousingInflation.selector
+    );
+    req.add("service", "truflation/current");
+    req.add("keypath", "housingInflation");
+    req.add("abi", "json");
+    return sendChainlinkRequestTo(oracleId, req, fee);
+  }
+
+  function fulfillHousingInflation(
+    bytes32 _requestId,
+    bytes memory _inflation
+  ) public recordChainlinkFulfillment(_requestId) {
+    housingInflation = string(_inflation);
+  }
+
+  //Transportation
+  function requestTransportationInflation() public returns (bytes32 requestId) {
+    Chainlink.Request memory req = buildChainlinkRequest(
+      bytes32(bytes(jobId)),
+      address(this),
+      this.fulfillTransportationInflation.selector
+    );
+    req.add("service", "truflation/current");
+    req.add("keypath", "transportationInflation");
+    req.add("abi", "json");
+    return sendChainlinkRequestTo(oracleId, req, fee);
+  }
+
+  function fulfillTransportationInflation(
+    bytes32 _requestId,
+    bytes memory _inflation
+  ) public recordChainlinkFulfillment(_requestId) {
+    transportationInflation = string(_inflation);
+  }
+
+  //Education
+  function fulfillEducationInflation(
+    bytes32 _requestId,
+    bytes memory _inflation
+  ) public recordChainlinkFulfillment(_requestId) {
+    educationInflation = string(_inflation);
+  }
+
+  function requestEducationInflation() public returns (bytes32 requestId) {
+    Chainlink.Request memory req = buildChainlinkRequest(
+      bytes32(bytes(jobId)),
+      address(this),
+      this.fulfillEducationInflation.selector
+    );
+    req.add("service", "truflation/current");
+    req.add("keypath", "educationInflation");
+    req.add("abi", "json");
+    return sendChainlinkRequestTo(oracleId, req, fee);
+  }
+
+  //Medical
+  function fulfillMedicalInflation(
+    bytes32 _requestId,
+    bytes memory _inflation
+  ) public recordChainlinkFulfillment(_requestId) {
+    medicalInflation = string(_inflation);
+  }
+
+  function requestMedicalInflation() public returns (bytes32 requestId) {
+    Chainlink.Request memory req = buildChainlinkRequest(
+      bytes32(bytes(jobId)),
+      address(this),
+      this.fulfillMedicalInflation.selector
+    );
+    req.add("service", "truflation/current");
+    req.add("keypath", "personalItemInflation");
+    req.add("abi", "json");
+    return sendChainlinkRequestTo(oracleId, req, fee);
+  }
+  //BRUH
+  function fulfillpersonalItemInflation(
+    bytes32 _requestId,
+    bytes memory _inflation
+  ) public recordChainlinkFulfillment(_requestId) {
+    personalItemInflation = string(_inflation);
+  }
+
+  function requestpersonalItemInflation() public returns (bytes32 requestId) {
+    Chainlink.Request memory req = buildChainlinkRequest(
+      bytes32(bytes(jobId)),
+      address(this),
+      this.fulfillpersonalItemInflation.selector
+    );
+    req.add("service", "truflation/current");
+    req.add("keypath", "personalItemInflation");
+    req.add("abi", "json");
+    return sendChainlinkRequestTo(oracleId, req, fee);
+  }
+
+
   function changeOracle(address _oracle) public onlyOwner {
     oracleId = _oracle;
   }
