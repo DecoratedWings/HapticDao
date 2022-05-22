@@ -64,7 +64,10 @@ const Swap = () => {
         });
         speak({ text: `Haptic dex uses uniswaps dex to allow you to swap tokens.
                         If you are signed into Haptic Dao you are automatically connected
-                        to uniswap with your wallet and may begin trading.` });
+                        to uniswap with your wallet and may begin trading. Alternatively there 
+                        is a speak button below the instructions where you may request a token swap 
+                        quote. After finding out the quote amount you may then request that swap.
+                        Strong vibrations will indicate that a swap is occurring.` });
       }
 
       const fetchTokenBalances = async () => {
@@ -113,7 +116,7 @@ const Swap = () => {
         console.log(quote);
         console.log("Amount of token 2 is :", quote.toTokenAmount);
 
-        await hapticVibrationService.selectionVibrate(function (fallback) {
+        await hapticVibrationService.successVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: `Amount of ${token2} you would be receiving for ${amount} of ${token1} is: ${quote.toTokenAmount}` });
@@ -143,7 +146,7 @@ const Swap = () => {
         await hapticVibrationService.warningVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
-        speak({ text: `Transaction is being processed. 
+        speak({ text: `Transaction for swapping ${amount} of ${token1} to ${token2} is being processed. 
         Upon completion you may check your wallet balance on the dashboard screen.` });
 
       }
