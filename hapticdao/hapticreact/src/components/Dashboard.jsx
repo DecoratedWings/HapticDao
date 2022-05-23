@@ -64,6 +64,12 @@ const Dashboard = () => {
             },
         },
         {
+            command: "get wallet balance",
+            callback: () => {
+                fetchTokenBalances().then(result => console.log(result));
+            },
+        },
+        {
             command: "reset",
             callback: () => {
                 handleReset();
@@ -219,10 +225,10 @@ const Dashboard = () => {
 
 
         speak({ text: "User has the following token balances in their connected wallet address." })
-        speak({ text: `Porfolio balance of Ethereum is:${(balance).toString()}.` });
+        speak({ text: `Porfolio balance of Ethereum is ${(balance).toString()}.` });
         for (let i = 0; i < balances.length; i++) {
             console.log(balances[i]);
-            speak({ text: `Porfolio balance of ${balances[i].name} is: ${(Number(balances[i].balance) / 10 ** 18).toString()}.` });
+            speak({ text: `Porfolio balance of ${balances[i].name} is ${(Number(balances[i].balance) / 10 ** 18).toString()}.` });
         }
     };
 
@@ -253,9 +259,9 @@ const Dashboard = () => {
                         <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
                             Speak
                         </button> &nbsp;
-                        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
+                        {/* <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
                             Get Portfolio Balance
-                        </button>
+                        </button> */}
 
                         <br /><br />
 
