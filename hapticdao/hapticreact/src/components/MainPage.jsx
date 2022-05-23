@@ -72,7 +72,7 @@ const MainPage = () => {
         <br /><br /><br /> <br />
         <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Features</h1>
         <br /><br />
-        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 items-center rounded-full" onClick={instructions}>
+        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 items-center rounded-full" onClick={instructions}>
           Instructions
         </button>
         <br /> <br />

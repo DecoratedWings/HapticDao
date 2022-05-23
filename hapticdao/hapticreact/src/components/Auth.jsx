@@ -49,8 +49,8 @@ const Auth = () => {
 
     return (
         <div onClick={handleClick} className=''>
-            {!button ? <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full justify-left" onClick={login}>Login</button>
-                : <button onClick={logOut} disabled={isAuthenticating} class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full">Logout</button>}
+            {!button ? <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full justify-left" onClick={login}>Login</button>
+                : <button onClick={logOut} disabled={isAuthenticating} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full">Logout</button>}
         </div>
     );
 }

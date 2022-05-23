@@ -123,8 +123,6 @@ const Send = () => {
     await TransferWeth();
   }
 
-
-
   return (
     <div name='dao' className='w-full h-screen justify-center bg-teal-100'>
       <div className='max-w-[300px] mx-auto px-8  justify-center '>
@@ -132,7 +130,7 @@ const Send = () => {
         <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Transfer</h1>
         <br /><br />
         <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-          <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
+          <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
             Instructions
           </button>
         </div>
@@ -146,7 +144,7 @@ const Send = () => {
         <h2 className='text-slate-300 text-2xl'><b>Which Crypo Would you like to send? <br />Please state the recipient as well.</b> </h2>
         <br />
         <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-          <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getDataForTransfer}>
+          <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getDataForTransfer}>
             Speak
           </button>
           <div className='flex justify-between flex-wrap px-4'>

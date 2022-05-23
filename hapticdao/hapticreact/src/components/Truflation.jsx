@@ -60,7 +60,7 @@ async function sync(){
         <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Truflation</h1>
         <br /><br />
         <div className='max-w-[1000px] mx-auto px-20  justify-center'>
-          <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={instructions}>
+          <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={instructions}>
             Instructions
           </button>
         </div>
@@ -68,7 +68,7 @@ async function sync(){
       </div>
 
       <br />
-      <div class="mx-4 space-y-60">
+      <div className="mx-4 space-y-60">
 
       <div className='absolute flex flex-col py-8 md:min-w-[760px] 
             mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-500
@@ -76,15 +76,15 @@ async function sync(){
         <h2 className='text-slate-300 text-2xl'><b>Inflation Data Powered by chainlink oracles. <br/>Currently fetches Yoy inflation<br /></b> </h2>
         <br />
         <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-          <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={sync}>
+          <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={sync}>
             Sync Inflation
           </button>
           <br/> <br/>   
 
-            <div class="w-80 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl" onClick={readInflation}>
-            <div class="p-2">
+            <div className="w-80 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl" onClick={readInflation}>
+            <div className="p-2">
                 {/* <!-- Heading --> */}
-                <h2 class="font-bold mb-2 text-teal-500 text-2xl ">Yoy Inflation: {yoyInflation} %</h2>
+                <h2 className="font-bold mb-2 text-teal-500 text-2xl ">Yoy Inflation: {yoyInflation} %</h2>
             </div>
 
         </div>

@@ -29,7 +29,7 @@ const Home = () => {
             </div>
 
             <div className='max-w-[200px] mx-auto px-8  justify-center '>
-                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full" onClick={handleVibrate}>
+                <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full" onClick={handleVibrate}>
                    ENTER APP
                 </button>
             </div>

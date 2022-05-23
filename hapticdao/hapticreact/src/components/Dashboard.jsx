@@ -206,25 +206,13 @@ const Dashboard = () => {
         setPrice('');
     };
 
-    async function getUserBalance() {
-        await Moralis.initPlugins();
-        await Moralis.enableWeb3();
-
-        const currentUser = Moralis.User.current();
-        if (!currentUser) {
-            currentUser = Moralis.authenticate();
-        }
-        const balances = await Moralis.Web3API.account.getTokenBalances();
-        console.log(balances);
-    }
-
     const fetchTokenBalances = async () => {
         const options = {
             chain: 'rinkeby',
         }
         const balances = await Moralis.Web3API.account.getTokenBalances(options);
         const balance = await Moralis.Web3API.account.getNativeBalance(options);
-        
+
         // let balance = Number(balances[0].balance) / 10**18;
         console.log("user balances: " + balances);
         speak({ text: "User has the following token balances in their connected wallet address." })
@@ -241,7 +229,7 @@ const Dashboard = () => {
                 <h1 className='text-4xl sm:text-7xl font-bold items-center justify-center text-gray-500'>Haptic Dashboard</h1>
                 <br /><br />
                 <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
+                    <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={handleVibrate}>
                         Instructions
                     </button>
                 </div>
@@ -258,10 +246,10 @@ const Dashboard = () => {
                     <h2 className='text-slate-300 text-2xl'><b>What Crypto would you like the price of?</b> </h2>
                     <br />
                     <div className='max-w-[1000px] mx-auto px-20  justify-center '>
-                        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
+                        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={getTokenData}>
                             Speak
                         </button> &nbsp;
-                        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
+                        <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full" onClick={fetchTokenBalances}>
                             Get Portfolio Balance
                         </button>
 
@@ -273,7 +261,7 @@ const Dashboard = () => {
                         <br />
                         <input value={input} onInput={e => setInput(e.target.value)} className="rounded-full" />&nbsp;
 
-                        <button onClick={determineTokenFetch} class="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full">Submit</button>
+                        <button onClick={determineTokenFetch} className="bg-teal-500 hover:bg-teal-700 text-white font-bold px-10 py-2 rounded-full">Submit</button>
 
                         <div className='flex justify-center flex-wrap px-4'>
                             <p className='flex px-10 py-2 text-teal-300 text-2xl'>{transcript}</p>
