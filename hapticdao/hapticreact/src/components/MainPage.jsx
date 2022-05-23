@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaArrowsAltH, FaBtc, FaStore, FaThList, FaVoteYea, FaRegChartBar } from 'react-icons/fa';
+import { FaArrowsAltH, FaThList, FaVoteYea, FaRegChartBar } from 'react-icons/fa';
 import Card from './Card';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
@@ -7,7 +7,7 @@ import HapticVibrationService from '../services/HapticVibrationService';
 
 const MainPage = () => {
 
-  const hapticVibrationService = new HapticVibrationService;
+  const hapticVibrationService = new HapticVibrationService();
   const { speak } = useSpeechSynthesis();
 
   async function selectSend() {

@@ -4,7 +4,7 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 
 const DaoCard = (props) => {
   
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
 
     async function readCard(){

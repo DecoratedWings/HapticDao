@@ -5,7 +5,7 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 
 const Auth = () => {
 
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
 
     const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
@@ -14,7 +14,7 @@ const Auth = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            // add your logic here
+            console.log("Authenticated");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthenticated]);

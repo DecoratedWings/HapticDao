@@ -5,7 +5,7 @@ import HapticVibrationService from '../services/HapticVibrationService';
 import Auth from './Auth';
 
 const Home = () => {
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
 
     async function handleVibrate() {
@@ -42,7 +42,7 @@ const Home = () => {
             {/* Hide 3D Design on Mobile to show menu */}
             <div className='hidden md:flex mx-auto px-8  justify-center'>
                 {/* <Hands3D /> */}
-            <iframe src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='600px' height='600px' >
+            <iframe title="3D Hands" src='https://my.spline.design/hapticlogo-fb22e1ef24b65fc8f1b9fe2b5b3f7010/' frameborder='0' width='600px' height='600px' >
             </iframe>
             </div>
 

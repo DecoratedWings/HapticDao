@@ -1,14 +1,15 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Send from './components/Send';
 import Dao from './components/Dao';
-import Marketplace from './components/Marketplace';
 import Swap from './components/Swap';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './components/Dashboard';
 import MainPage from './components/MainPage';
 import Truflation from './components/Truflation';
+
+// import Marketplace from './components/Marketplace';
+// import Send from './components/Send';
 
 
 function App() {

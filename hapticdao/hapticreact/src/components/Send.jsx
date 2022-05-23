@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
-import { useWeb3Transfer, ReactMoralisError, useERC20Balances, useMoralis } from "react-moralis";
+import { useMoralis } from "react-moralis";
 
 const Send = () => {
   const [amount, setAmount] = useState('');
@@ -51,7 +51,7 @@ const Send = () => {
   const { transcript, resetTranscript } = useSpeechRecognition({ commands });
   const [isListening, setIsListening] = useState(false);
 
-  const hapticVibrationService = new HapticVibrationService;
+  const hapticVibrationService = new HapticVibrationService();
   const { speak } = useSpeechSynthesis();
   const { Moralis } = useMoralis();
 

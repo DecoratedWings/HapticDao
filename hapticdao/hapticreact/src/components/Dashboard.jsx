@@ -5,12 +5,14 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import usdPriceABI from './utils/USDPriceConverter.json';
 import { ethers } from "ethers";
-import { useMoralis } from 'react-moralis';
+import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 import CL from '../assets/chainlink.png';
 
 const Dashboard = () => {
 
     const { Moralis } = useMoralis();
+    const { Web3Api }= useMoralisWeb3Api();
+
 
     const commands = [
         {
@@ -211,11 +213,13 @@ const Dashboard = () => {
             chain: 'rinkeby',
         }
         const balances = await Moralis.Web3API.account.getTokenBalances(options);
-        const balance = await Moralis.Web3API.account.getNativeBalance(options);
+        let balance = await Moralis.Web3API.account.getNativeBalance(options);
+        balance = (Number(balance.balance) / 10 ** 18).toFixed(4);
+        console.log("balance is", balance);
 
-        // let balance = Number(balances[0].balance) / 10**18;
-        console.log("user balances: " + balances);
+
         speak({ text: "User has the following token balances in their connected wallet address." })
+        speak({ text: `Porfolio balance of Ethereum is:${(balance).toString()}.` });
         for (let i = 0; i < balances.length; i++) {
             console.log(balances[i]);
             speak({ text: `Porfolio balance of ${balances[i].name} is: ${(Number(balances[i].balance) / 10 ** 18).toString()}.` });

@@ -62,10 +62,17 @@ const Swap = () => {
                 getQuote(amount, token1, token2).then(result => console.log(result));
             },
         },
+        {
+            command: "reset",
+            callback: () => {
+                handleReset();
+                console.log("Transcript has been reset!")
+            },
+        },
     ]
     const { transcript, resetTranscript } = useSpeechRecognition({ commands });
     const [isListening, setIsListening] = useState(false);
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
 
     async function instructions() {
@@ -100,6 +107,11 @@ const Swap = () => {
             console.log("Vibration encountered an error: ", fallback);
         });
     }
+    const handleReset = () => {
+        setIsListening(false);
+        SpeechRecognition.stopListening();
+        resetTranscript();
+    };
 
     async function getQuote(amount, token1, token2) {
         const quote = await Moralis.Plugins.oneInch.quote({
@@ -120,7 +132,7 @@ const Swap = () => {
 
     async function swapTokens(amount, token1, token2) {
 
-        const currentUser = Moralis.User.current();
+        let currentUser = Moralis.User.current();
         if (!currentUser) {
             currentUser = Moralis.authenticate();
         }
@@ -167,7 +179,7 @@ const Swap = () => {
             await Moralis.switchNetwork("0x89");
         }
         switchChains();
-    }, []);
+    }, );
 
 
 
@@ -190,6 +202,7 @@ const Swap = () => {
 
             <br />
             <iframe name='uniswap' src="https://app.uniswap.org/#/swap?exactField=input&exactAmount=10&inputCurrency=0x6b175474e89094c44da98b954eedeac495271d0f"
+                title="uniswap"
                 height="660px"
                 width="100%"
                 style={{

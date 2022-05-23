@@ -4,11 +4,11 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 
 const TruflationCard = (props) => {
 
-    const hapticVibrationService = new HapticVibrationService;
+    const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
 
     async function readCard(){
-        var status = await hapticVibrationService.selectionVibrate(function (fallback) {
+        await hapticVibrationService.selectionVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: `The Rate for ${props.title} is ${props.description}` });

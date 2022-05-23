@@ -8,7 +8,7 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 const Truflation = () => {
 
   const [yoyInflation, setYoyInflation] = useState('');
-  const hapticVibrationService = new HapticVibrationService;
+  const hapticVibrationService = new HapticVibrationService();
   const { speak } = useSpeechSynthesis();
 
   const contractAddress = "0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD";
