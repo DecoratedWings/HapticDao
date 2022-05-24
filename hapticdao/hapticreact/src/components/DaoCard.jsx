@@ -11,7 +11,7 @@ const DaoCard = (props) => {
         var status = await hapticVibrationService.selectionVibrate(function (fallback) {
             console.log("Vibration encountered an error: ", fallback);
         });
-        speak({ text: props.description });
+        speak({ text: `Feature ${props.title}. This feature would ${props.description} ` });
         console.log(props.description);
     }
     
