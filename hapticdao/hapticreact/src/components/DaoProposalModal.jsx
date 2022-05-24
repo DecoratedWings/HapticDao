@@ -1,16 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import hapticDAO from './utils/HapticDao.json';
+import { ethers } from "ethers";
+import HapticVibrationService from '../services/HapticVibrationService';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const DaoProposalModal = () => {
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    const handleSubmit =()=> {
+     //Amount to send for voting
+     const options = {value: ethers.utils.parseEther("0.01")};
+
+     const contractAddress = "0x49Bf054E5Dc02998ECd4C31F94cAB38821c5983f";
+     const provider = new ethers.providers.Web3Provider(window.ethereum);
+     const signer = provider.getSigner()
+     const hapticDAOContract = new ethers.Contract(contractAddress, hapticDAO.abi, signer);
+
+     const hapticVibrationService = new HapticVibrationService();
+     const { speak } = useSpeechSynthesis();
+ 
+    async function handleSubmit () {
         console.log("title is :", title);
         console.log("description is :", description);
         
         //Submit will persist Proposal to the blockchain
-        
+        await hapticDAOContract.addDaoCard(title, description, options);
+        speak({text: `You proposal to the DAO for feature ${title} with description ${description}
+                     has been successfully submitted. Please wait for the transaction to persist
+                     to the blockchain. Upon completion you will be able to view your proposal.`})
+       //reset upon submission
+       setTitle('');
+       setDescription('');           
     }
 
   return (
