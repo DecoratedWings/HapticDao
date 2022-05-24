@@ -179,7 +179,7 @@ const Swap = () => {
             await Moralis.switchNetwork("0x89");
         }
         switchChains();
-    }, );
+    },[] );
 
 
 
