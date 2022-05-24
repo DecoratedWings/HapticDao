@@ -2,6 +2,7 @@ import React from 'react'
 import DaoCardList from './DaoCardList'
 import HapticVibrationService from '../services/HapticVibrationService';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import DaoProposalModal from './DaoProposalModal';
 
 
 const Dao = () => {
@@ -31,10 +32,9 @@ const Dao = () => {
                         Instructions
                     </button>
                     <br/><br/>           
-                    <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-8 justify-center items-center rounded-full" onClick={null}>
-                        Add Proposal
-                    </button>
+                    <DaoProposalModal/>
                     <br /><br />
+              
 
                 </div>
 
