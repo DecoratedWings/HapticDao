@@ -151,3 +151,5 @@ function doRequest(
 }
 //old deploy: 0x4a44d3E4F061bce81ab82DE0E67383F69E7967A5
 //deploy : 0xaE02354d16019b1A6dA8c2E184Fe9903cEacD785
+
+//test counter contract: 0x952cEe3d68AF8DC09A3501CaD8f444Da1942cc91
