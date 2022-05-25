@@ -105,18 +105,17 @@ function doRequest(
     Intended to run daily to refresh inflation data.
     Running every 2 minutes for hackathon purposes currently
   */
-    function checkUpkeep(bytes calldata checkData ) external view override returns (bool upkeepNeeded, bytes memory performData ) {
-        upkeepNeeded = (block.timestamp - lastTimeStamp) > interval;
+    function checkUpkeep(bytes calldata checkData ) external view override returns (bool upkeepNeeded, bytes memory performData) {
+        bool timeToStart = (block.timestamp - lastTimeStamp) > interval;
+        upkeepNeeded = runKeeper && timeToStart;
         performData = checkData;
     }
 
     function performUpkeep(bytes calldata performData) external override {
-        if (runKeeper && ( (block.timestamp - lastTimeStamp) > interval) ) {
-            lastTimeStamp = block.timestamp;
-            //Sync Truflation Values for User:
-            simulateRequestForCategoryInflations();
-            requestYoyInflation();
-        }
+        lastTimeStamp = block.timestamp;
+        //Sync Truflation Values for User:
+        simulateRequestForCategoryInflations();
+        requestYoyInflation();
         performData;
     }
 
@@ -150,7 +149,5 @@ function doRequest(
   }
 
 }
-
-//deploy 1: 0x4a44d3E4F061bce81ab82DE0E67383F69E7967A5
-// Keepers: https://keepers.chain.link/rinkeby/564
-    //Name: Haptic Inflation Sync
+//old deploy: 0x4a44d3E4F061bce81ab82DE0E67383F69E7967A5
+//deploy : 0xaE02354d16019b1A6dA8c2E184Fe9903cEacD785
