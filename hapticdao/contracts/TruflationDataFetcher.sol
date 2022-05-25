@@ -3,12 +3,18 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
+import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 
 
-contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
+contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner, KeeperCompatibleInterface {
+
   using Chainlink for Chainlink.Request;
   
   string public yoyInflation;
+  bytes public result;
+  mapping(bytes32 => bytes) public results;
+
+  //Category Inflations (will be replaced later with results mapping to save storage gas) : 
   string public foodInflation;
   string public housingInflation;
   string public transportationInflation;
@@ -16,24 +22,28 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
   string public educationInflation;
   string public personalItemInflation;
 
-  using Chainlink for Chainlink.Request;
   address public oracleId;
   string public jobId;
   uint256 public fee;
 
-  mapping(string=>string) categoryToInflationRate;
+  uint public immutable interval;
+  uint public lastTimeStamp;
+
+  bool runKeeper;
 
   /**
-    Network Details derived from Market.Chainlink Truflation Rinkeby
+    Network Details derived from Market.Chainlink Truflation Mumbai
     https://market.link/nodes/969f6cd9-40f3-4dd6-aa02-4fa8c8421480/integrations
    */
 
-  //Job Id changed on deployed contract to : e5b99e0a2f79402998187b11f37c56a6
   constructor() ConfirmedOwner(msg.sender) {
     setPublicChainlinkToken();
     oracleId = 0x17dED59fCd940F0a40462D52AAcD11493C6D8073;
     jobId = "b04c2a85143c43089c1befe7c41dea93";
     fee = 0.1 * 10 ** 18;
+    interval = 300;
+    lastTimeStamp = block.timestamp;
+    runKeeper = true;
   }
         
   function requestYoyInflation() public returns (bytes32 requestId) {
@@ -56,131 +66,30 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
   }
 
   /**
-    Truflation APIs not available for categories below currently. 
+    Truflation APIs not available for categories currently. 
     Team has indicated that we are to use placeholders for the time being. 
-    Will update once available.
+    Will update once available and consolidate to include yoyInflation in same method.
    */
 
-    //Food
-  function requestFoodInflation() public returns (bytes32 requestId) {
-    Chainlink.Request memory req = buildChainlinkRequest(
-      bytes32(bytes(jobId)),
-      address(this),
-      this.fulfillFoodInflation.selector
-    );
-    req.add("service", "truflation/current");
-    req.add("keypath", "foodInflation");
-    req.add("abi", "json");
-    return sendChainlinkRequestTo(oracleId, req, fee);
-  }
+function doRequest(
+        string memory service_,
+        string memory keypath_) public returns (bytes32 requestId) {
+          Chainlink.Request memory req = buildChainlinkRequest(
+            bytes32(bytes(jobId)),
+            address(this), this.fulfillBytes.selector);
+        req.add("service", service_);
+        req.add("keypath", keypath_);
+        req.add("abi", "json");
+        return sendChainlinkRequestTo(oracleId, req, fee);
+    }
 
-  function fulfillFoodInflation(
-    bytes32 _requestId,
-    bytes memory _inflation
-  ) public recordChainlinkFulfillment(_requestId) {
-    foodInflation = string(_inflation);
-  }
+    function fulfillBytes(bytes32 _requestId, bytes memory bytesData)
+        public recordChainlinkFulfillment(_requestId) {
+        result = bytesData;
+	results[_requestId] = bytesData;
+    }
 
-  //Housing
-  function requestHousingInflation() public returns (bytes32 requestId) {
-    Chainlink.Request memory req = buildChainlinkRequest(
-      bytes32(bytes(jobId)),
-      address(this),
-      this.fulfillHousingInflation.selector
-    );
-    req.add("service", "truflation/current");
-    req.add("keypath", "housingInflation");
-    req.add("abi", "json");
-    return sendChainlinkRequestTo(oracleId, req, fee);
-  }
-
-  function fulfillHousingInflation(
-    bytes32 _requestId,
-    bytes memory _inflation
-  ) public recordChainlinkFulfillment(_requestId) {
-    housingInflation = string(_inflation);
-  }
-
-  //Transportation
-  function requestTransportationInflation() public returns (bytes32 requestId) {
-    Chainlink.Request memory req = buildChainlinkRequest(
-      bytes32(bytes(jobId)),
-      address(this),
-      this.fulfillTransportationInflation.selector
-    );
-    req.add("service", "truflation/current");
-    req.add("keypath", "transportationInflation");
-    req.add("abi", "json");
-    return sendChainlinkRequestTo(oracleId, req, fee);
-  }
-
-  function fulfillTransportationInflation(
-    bytes32 _requestId,
-    bytes memory _inflation
-  ) public recordChainlinkFulfillment(_requestId) {
-    transportationInflation = string(_inflation);
-  }
-
-  //Education
-  function fulfillEducationInflation(
-    bytes32 _requestId,
-    bytes memory _inflation
-  ) public recordChainlinkFulfillment(_requestId) {
-    educationInflation = string(_inflation);
-  }
-
-  function requestEducationInflation() public returns (bytes32 requestId) {
-    Chainlink.Request memory req = buildChainlinkRequest(
-      bytes32(bytes(jobId)),
-      address(this),
-      this.fulfillEducationInflation.selector
-    );
-    req.add("service", "truflation/current");
-    req.add("keypath", "educationInflation");
-    req.add("abi", "json");
-    return sendChainlinkRequestTo(oracleId, req, fee);
-  }
-
-  //Medical
-  function fulfillMedicalInflation(
-    bytes32 _requestId,
-    bytes memory _inflation
-  ) public recordChainlinkFulfillment(_requestId) {
-    medicalInflation = string(_inflation);
-  }
-
-  function requestMedicalInflation() public returns (bytes32 requestId) {
-    Chainlink.Request memory req = buildChainlinkRequest(
-      bytes32(bytes(jobId)),
-      address(this),
-      this.fulfillMedicalInflation.selector
-    );
-    req.add("service", "truflation/current");
-    req.add("keypath", "personalItemInflation");
-    req.add("abi", "json");
-    return sendChainlinkRequestTo(oracleId, req, fee);
-  }
-  
-  //Personal Items
-  function fulfillpersonalItemInflation(
-    bytes32 _requestId,
-    bytes memory _inflation
-  ) public recordChainlinkFulfillment(_requestId) {
-    personalItemInflation = string(_inflation);
-  }
-
-  function requestpersonalItemInflation() public returns (bytes32 requestId) {
-    Chainlink.Request memory req = buildChainlinkRequest(
-      bytes32(bytes(jobId)),
-      address(this),
-      this.fulfillpersonalItemInflation.selector
-    );
-    req.add("service", "truflation/current");
-    req.add("keypath", "personalItemInflation");
-    req.add("abi", "json");
-    return sendChainlinkRequestTo(oracleId, req, fee);
-  }
-
+  //Will be removed once API is available; represents "data sync" since API unavailable
   function simulateRequestForCategoryInflations() public {
       foodInflation="13.16";
       housingInflation="12.14";
@@ -190,7 +99,38 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
       personalItemInflation="5.01";
   }
 
+  /**
+    Keepers functions
 
+    Intended to run daily to refresh inflation data.
+    Running every 2 minutes for hackathon purposes currently
+  */
+    function checkUpkeep(bytes calldata checkData ) external view override returns (bool upkeepNeeded, bytes memory performData ) {
+        upkeepNeeded = (block.timestamp - lastTimeStamp) > interval;
+        performData = checkData;
+    }
+
+    function performUpkeep(bytes calldata performData) external override {
+        if (runKeeper && ( (block.timestamp - lastTimeStamp) > interval) ) {
+            lastTimeStamp = block.timestamp;
+            //Sync Truflation Values for User:
+            simulateRequestForCategoryInflations();
+            requestYoyInflation();
+        }
+        performData;
+    }
+
+  /**
+    Utility functions
+  */
+
+  function enableKeeper() public onlyOwner {
+      runKeeper = true;
+  }
+
+  function disableKeeper() public onlyOwner {
+      runKeeper = false;
+  }
   function changeOracle(address _oracle) public onlyOwner {
     oracleId = _oracle;
   }
@@ -210,3 +150,7 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner {
   }
 
 }
+
+//deploy 1: 0x4a44d3E4F061bce81ab82DE0E67383F69E7967A5
+// Keepers: https://keepers.chain.link/rinkeby/564
+    //Name: Haptic Inflation Sync
