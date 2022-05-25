@@ -103,7 +103,7 @@ function doRequest(
     Keepers functions
 
     Intended to run daily to refresh inflation data.
-    Running every 2 minutes for hackathon purposes currently
+    Running every 5 minutes for hackathon purposes currently
   */
     function checkUpkeep(bytes calldata checkData ) external view override returns (bool upkeepNeeded, bytes memory performData) {
         bool timeToStart = (block.timestamp - lastTimeStamp) > interval;

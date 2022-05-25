@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { FaBtc } from 'react-icons/fa';
+import { RiCoinsFill } from 'react-icons/ri';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
@@ -266,7 +266,7 @@ const Dashboard = () => {
                         <br /><br />
 
                         <div className='flex justify-center flex-wrap px-4 items-center'>
-                            <p className='flex px-4 py-2 text-slate-300'><FaBtc className='h-6 text-green-200' />&nbsp;Token Selected :</p>
+                            <p className='flex px-4 py-2 text-slate-300'><RiCoinsFill className='h-6 text-green-200' />&nbsp;Token Selected :</p>
                         </div>
                         <br />
                         <input value={input} onInput={e => setInput(e.target.value)} className="rounded-full" />&nbsp;
