@@ -1,15 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import TruflationCard from './TruflationCard'
-import truflationYoyABI from './utils/TruflationContract.json';
+import truflationABI from './utils/TruflationContract.json';
 import { ethers } from "ethers";
 
 const TruflationCardList = () => {
+
+  const [foodInflation, setFoodInflation] = useState('');
+  const [housingInflation, setHousingInflation] = useState('');
+
 
     const cardInfo = [
         {
             title: "Food",
             emoji:"🌾",
-            description: "14%",
+            description: `${foodInflation} %`,
         },
         {
             title: "Housing",
@@ -41,7 +45,20 @@ const TruflationCardList = () => {
     const contractAddress = "0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const truflationContract = new ethers.Contract(contractAddress, truflationYoyABI, signer);
+    const truflationContract = new ethers.Contract(contractAddress, truflationABI, signer);
+
+
+    async function getFoodInflation() {
+      console.log("calling ... ")
+      truflationContract.foodInflation().then(result=>{
+        setFoodInflation(Number(result).toFixed(2));
+        console.log("inflation is: ",result)
+      });
+    }
+
+    useEffect(() => {
+      getFoodInflation();
+    }, []);
 
 
     const renderCard = (card, index) => {
