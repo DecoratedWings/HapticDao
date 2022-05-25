@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import TruflationCard from './TruflationCard'
-import hapticDAO from './utils/HapticDao.json';
+import truflationYoyABI from './utils/TruflationContract.json';
 import { ethers } from "ethers";
-
 
 const TruflationCardList = () => {
 
@@ -39,10 +38,10 @@ const TruflationCardList = () => {
         },
     ]
 
-    const contractAddress = "";
+    const contractAddress = "0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner()
-    const hapticDAOContract = new ethers.Contract(contractAddress, hapticDAO.abi, signer);
+    const signer = provider.getSigner();
+    const truflationContract = new ethers.Contract(contractAddress, truflationYoyABI, signer);
 
 
     const renderCard = (card, index) => {
