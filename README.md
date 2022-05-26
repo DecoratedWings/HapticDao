@@ -17,5 +17,7 @@
     ii) Grab the port you are running the react app on
     iii) On your mobile browser: search <IP_ADDRESS>:<PORT>
 
-Please Note that you must have a metamask wallet for certain pages to appear.
-Otherwise you will only see a blank page.
+<br/>
+
+<i> Please Note that you must have a metamask wallet for certain pages to appear.
+    Otherwise you will only see a blank page.</i>
