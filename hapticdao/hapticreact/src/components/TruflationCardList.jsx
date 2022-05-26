@@ -11,7 +11,7 @@ const TruflationCardList = () => {
   const [transportationInflation, setTransportationInflation] = useState('');
   const [medicalInflation, setMedicalInflation] = useState('');
   const [educationInflation, setEducationInflation] = useState('');
-  const [personalItemsInflation, setPersonalItemsInflation] = useState('');
+  const [personalItemInflation, setPersonalItemInflation] = useState('');
 
     const cardInfo = [
         {
@@ -41,8 +41,8 @@ const TruflationCardList = () => {
         },
         {
           title: "Personal Items",
-          emoji:"👨👩",
-          description: `${personalItemsInflation} %`,
+          emoji:"🛍️",
+          description: `${personalItemInflation} %`,
         },
     ]
 
@@ -87,10 +87,10 @@ const TruflationCardList = () => {
         console.log("inflation is: ",result)
       });
     }
-    async function getPersonalItemsInflation() {
+    async function getPersonalItemInflation() {
       console.log("calling ... ")
-      truflationContract.personalItemsInflation().then(result=>{
-        setPersonalItemsInflation(Number(result).toFixed(2));
+      truflationContract.personalItemInflation().then(result=>{
+        setPersonalItemInflation(Number(result).toFixed(2));
         console.log("inflation is: ",result)
       });
     }
@@ -101,7 +101,7 @@ const TruflationCardList = () => {
       getTransportationInflation();
       getMedicalInflation();
       getEducationInflation();
-      getPersonalItemsInflation();
+      getPersonalItemInflation();
     }, []);
 
 
