@@ -86,7 +86,8 @@
  # Final Notes: 
  
  For any questions or concerns please reach out to me or our team on devpost: https://devpost.com/software/hapticdao
- <br/>
+ <br/> <br/>
+ 
  Or at our email: haptcdao@gmail.com
  <br/>
  ---------------------------------------------------------------------
