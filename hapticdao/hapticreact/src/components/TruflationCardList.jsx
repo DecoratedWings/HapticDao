@@ -5,9 +5,13 @@ import { ethers } from "ethers";
 
 const TruflationCardList = () => {
 
+ 
   const [foodInflation, setFoodInflation] = useState('');
   const [housingInflation, setHousingInflation] = useState('');
-
+  const [transportationInflation, setTransportationInflation] = useState('');
+  const [medicalInflation, setMedicalInflation] = useState('');
+  const [educationInflation, setEducationInflation] = useState('');
+  const [personalItemsInflation, setPersonalItemsInflation] = useState('');
 
     const cardInfo = [
         {
@@ -18,27 +22,27 @@ const TruflationCardList = () => {
         {
             title: "Housing",
             emoji:"🏠",
-            description: "15%",
+            description: `${housingInflation} %`,
           },
         {
             title: "Transportation ",
             emoji:"🚗",
-            description: "16%",
+            description: `${transportationInflation} %`,
         },
         {
           title: "Medical ",
           emoji:"🏥",
-          description: "17%",
+          description: `${medicalInflation} %`,
         },
         {
           title: "Education ",
           emoji:"📚",
-          description: "18%",
+          description: `${educationInflation} %`,
         },
         {
           title: "Personal Items",
           emoji:"👨👩",
-          description: "19%",
+          description: `${personalItemsInflation} %`,
         },
     ]
 
@@ -47,7 +51,7 @@ const TruflationCardList = () => {
     const signer = provider.getSigner();
     const truflationContract = new ethers.Contract(contractAddress, truflationABI, signer);
 
-
+    
     async function getFoodInflation() {
       console.log("calling ... ")
       truflationContract.foodInflation().then(result=>{
@@ -55,9 +59,49 @@ const TruflationCardList = () => {
         console.log("inflation is: ",result)
       });
     }
-
+    async function getHousingInflation() {
+      console.log("calling ... ")
+      truflationContract.housingInflation().then(result=>{
+        setHousingInflation(Number(result).toFixed(2));
+        console.log("inflation is: ",result)
+      });
+    }
+    async function getTransportationInflation() {
+      console.log("calling ... ")
+      truflationContract.transportationInflation().then(result=>{
+        setTransportationInflation(Number(result).toFixed(2));
+        console.log("inflation is: ",result)
+      });
+    }
+    async function getMedicalInflation() {
+      console.log("calling ... ")
+      truflationContract.medicalInflation().then(result=>{
+        setMedicalInflation(Number(result).toFixed(2));
+        console.log("inflation is: ",result)
+      });
+    }
+    async function getEducationInflation() {
+      console.log("calling ... ")
+      truflationContract.educationInflation().then(result=>{
+        setEducationInflation(Number(result).toFixed(2));
+        console.log("inflation is: ",result)
+      });
+    }
+    async function getPersonalItemsInflation() {
+      console.log("calling ... ")
+      truflationContract.personalItemsInflation().then(result=>{
+        setPersonalItemsInflation(Number(result).toFixed(2));
+        console.log("inflation is: ",result)
+      });
+    }
+    
     useEffect(() => {
       getFoodInflation();
+      getHousingInflation();
+      getTransportationInflation();
+      getMedicalInflation();
+      getEducationInflation();
+      getPersonalItemsInflation();
     }, []);
 
 
