@@ -11,9 +11,10 @@
     
     $ npm run start
     ```
-2) <b>Make sure you have metamask in your browser, otherwise some pages will not appear! 
+2) <b>IMPORTANT!!!!!!!! Make sure you have metamask in your browser, otherwise some pages will not appear! 
       Dashboard, DAO, and Truflation use Rinkeby network. DEX uses Polygon mainnet, but will prompt users to switch chains automatically 
-      if they forget to switch from Rinkeby.</b>
+      if they forget to switch from Rinkeby. Also make sure to login with the login button on our UI, we use Moralis to authenticate individual's
+      Metamask</b>
 
 3) ### Dashboard <br><br> ![dashboard](https://user-images.githubusercontent.com/17859699/170549081-42823fd9-8647-4ae0-b51f-908b39d5ed0b.png)
  
