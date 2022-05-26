@@ -59,9 +59,9 @@
 <i>Please note that it is probably better to use smaller amounts of currency as this is on matic mainnet and costs real money. 
    In the console tooling you can view that addresses and verbal transcripts are picked up properly. If you receive a 400 in the request to OneInch 
    (in the console) it is most likely due to insufficient funds. Navigate to the network tab and select that request to see proof of this.</i>
-      <br/>
+      <br/><br/>
       
-   3) Uniswap: we did not add any special functionality here. It is literally just uniswap.
+   For Uniswap: we did not add any special functionality here. It is literally just uniswap.
   
 
 ## Running The Application To Include Python backend
