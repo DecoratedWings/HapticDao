@@ -4,7 +4,7 @@
 
 # Instructions For Judges for Chainlink Hackathon 2022:
 
-1) Clone the repository and cd into hapticdao/hapticreact, then just like any othe react project: 
+1) Clone the repository and cd into hapticdao/hapticreact, then just like any other react project: 
     ```
     $ npm install
     
