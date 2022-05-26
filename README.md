@@ -2,7 +2,7 @@
 
 
 
-# Instructions For Judging for Chainlink Hackathon 2022
+# Instructions For Judges for Chainlink Hackathon 2022:
 
 1) Clone the repository and cd into hapticdao/hapticreact, then just like any othe react project: 
     ```
@@ -39,11 +39,29 @@
    
    Verbal Commands 
    1) quote * of * to * 
+   <br/>
       Ex: quote 5 of matic to dai 
+      Ex: quote 10 of chainlink to sushi
+      Ex: quote 20 of Aave to frax
    
+   2) swap * of * to * 
+   <br/>
+      Ex: swap 5 of matic to dai 
+      Ex: swap 10 of dai to link 
+      Ex: swap 3 of Aave to sushi 
+   <br/>
+<i>Please note that it is probably better to use smaller amounts of currency as this is on matic mainnet and costs real money. 
+   In the console tooling you can view that addresses and verbal transcripts are picked up properly. If you receive a 400 in the request to OneInch 
+   (in the console) it is most likely due to insufficient funds. Navigate to the network tab and select that request to see proof of this.</i>
+   
+   3) Uniswap: we did not add any special functionality here. It is literally just uniswap.
+  
 
+## Running The Application To Include Python backend
+<br/>
 
-## Running The Application 
+<i>Note: This portion of the instructions is for our team. Not intended for hackathon but for future use cases.</i>
+
 <br/>
 
 1) If anything on frontend has changed, cd into hapticreact and first run: 
