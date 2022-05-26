@@ -10,7 +10,10 @@
     
     $ npm run start
     ```
-2) Make sure you have metamask in your browser, otherwise some pages will not appear.
+2) <b>Make sure you have metamask in your browser, otherwise some pages will not appear! 
+      Dashboard, DAO, and Truflation use Rinkeby network. DEX uses Polygon mainnet, but will prompt users to switch chains automatically 
+      if they forget to switch from Rinkeby.</b>
+<br/>
 3) ### Dashboard 
     We are using Rinkeby chanlink price feeds. Make sure your metamask chain is rinkeby. 
     There is a limited offering of tokens on rinkeby, and from that offering we chose the most popular ones for now. 
@@ -81,9 +84,13 @@
     python3 manage.py runserver
     ```
 3) To test vibrations on mobile device:
+   <br/>
     i) Determine IP address of machine you are running the app on
+       <br/>
     ii) Grab the port you are running the react app on
+       <br/>
     iii) On your mobile browser: search <IP_ADDRESS>:<PORT>
+      <br/>
 
 <br/>
 
