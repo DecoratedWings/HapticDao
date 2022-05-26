@@ -4,12 +4,15 @@ import truflationYoyABI from './utils/TruflationContract.json';
 import { ethers } from "ethers";
 import HapticVibrationService from '../services/HapticVibrationService';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import { useMoralis } from 'react-moralis';
+
 
 const Truflation = () => {
 
   const [yoyInflation, setYoyInflation] = useState('');
   const hapticVibrationService = new HapticVibrationService();
   const { speak } = useSpeechSynthesis();
+  const { Moralis } = useMoralis();
 
   const contractAddress = "0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -52,6 +55,21 @@ async function sync(){
     speak({text: 'Requested data sync has been completed. Please refresh the page.'});
   })
 }
+
+async function init() {
+  await Moralis.initPlugins();
+  await Moralis.enableWeb3();
+  console.log("Moralis init");
+}
+
+useEffect(() => {
+  async function switchChains() {
+      await init();
+      await Moralis.switchNetwork("0x4");
+  }
+  switchChains();
+},[] );
+
 
   return (
     <div name='dao' className='w-full h-[130vh] justify-center bg-teal-100'>

@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { RiCoinsFill } from 'react-icons/ri';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useSpeechSynthesis } from 'react-speech-kit';
@@ -231,6 +231,20 @@ const Dashboard = () => {
             speak({ text: `Porfolio balance of ${balances[i].name} is ${(Number(balances[i].balance) / 10 ** 18).toString()}.` });
         }
     };
+
+    async function init() {
+        await Moralis.initPlugins();
+        await Moralis.enableWeb3();
+        console.log("Moralis init");
+    }
+
+    useEffect(() => {
+        async function switchChains() {
+            await init();
+            await Moralis.switchNetwork("0x4");
+        }
+        switchChains();
+    },[] );
 
     return (
         <div name='dashboard' className='w-full h-[130vh] justify-center bg-teal-100'>

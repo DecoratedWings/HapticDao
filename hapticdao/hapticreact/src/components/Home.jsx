@@ -1,10 +1,10 @@
-import {React,Link} from 'react'
+import {React} from 'react'
 import Hands3D from './3DHands';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import Auth from './Auth';
 import MainPage from './MainPage';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -16,7 +16,6 @@ const Home = () => {
             console.log("Vibration encountered an error: ", fallback);
         });
         speak({ text: "Entering The Application" });
-        window.location.href="/main";
         return(
          <Routes>
             <Route path="/main" exact element={<MainPage/>} />
@@ -37,9 +36,9 @@ const Home = () => {
             </div>
 
             <div className='max-w-[200px] mx-auto px-8  justify-center '>
-                <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full" onClick={handleVibrate}>
+                <Link className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-full" to='/main' onClick={handleVibrate}>
                    ENTER APP
-                </button>
+                </Link>
             </div>
             <br />
 

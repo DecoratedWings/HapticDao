@@ -1,14 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import DaoCardList from './DaoCardList'
 import HapticVibrationService from '../services/HapticVibrationService';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import DaoProposalModal from './DaoProposalModal';
+import { useMoralis } from 'react-moralis';
 
 
 const Dao = () => {
 
     const hapticVibrationService = new HapticVibrationService();
     const { speak } = useSpeechSynthesis();
+    const { Moralis } = useMoralis();
 
     async function instructions() {
         await hapticVibrationService.selectionVibrate(function (fallback) {
@@ -20,6 +22,20 @@ const Dao = () => {
                        usefullness. Voting or adding proposals will charge a small amount of our governance
                        HG token to prevent spamming. ` });
     }
+
+    async function init() {
+        await Moralis.initPlugins();
+        await Moralis.enableWeb3();
+        console.log("Moralis init");
+    }
+
+    useEffect(() => {
+        async function switchChains() {
+            await init();
+            await Moralis.switchNetwork("0x4");
+        }
+        switchChains();
+    },[] );
 
     return (
         <>
