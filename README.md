@@ -65,7 +65,30 @@
       <br/><br/>
       
    For Uniswap: we did not add any special functionality here. It is literally just uniswap.
-  
+ 
+ # LINKS 
+ 
+ Rinkeby Etherscan 
+ <br/>
+ Truflation yoycontract we deployed: https://rinkeby.etherscan.io/address/0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD 
+ <br/>
+ 
+ DAO Contract:
+ https://rinkeby.etherscan.io/address/0x49bf054e5dc02998ecd4c31f94cab38821c5983f#readContract
+ <br/>
+ 
+ Truflation Keepers Contract for Categories: 
+ https://rinkeby.etherscan.io/address/0xaE02354d16019b1A6dA8c2E184Fe9903cEacD785#writeContract
+ <br/>
+
+<i>Please note for the keepers contract we were instructed by Truflation team to use placeholder functions until they make the API available.</i>
+
+ # Final Notes: 
+ 
+ For any questions or concerns please reach out to me or our team on devpost: https://devpost.com/software/hapticdao
+ <br/>
+ Or at our email: haptcdao@gmail.com
+ 
 
 ## Running The Application To Include Python backend -> NOT HACKATHON RELATED
 <br/>
