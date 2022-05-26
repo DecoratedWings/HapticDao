@@ -42,7 +42,7 @@ const TruflationCardList = () => {
         },
     ]
 
-    const contractAddress = "0xA6D660d289509803FD16D478C5ae8Ef95cCE30BD";
+    const contractAddress = "0xaE02354d16019b1A6dA8c2E184Fe9903cEacD785";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const truflationContract = new ethers.Contract(contractAddress, truflationABI, signer);
