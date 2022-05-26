@@ -84,14 +84,12 @@
 <i>Please note for the keepers contract we were instructed by Truflation team to use placeholder functions until they make the API available.</i>
 
  # Final Notes: 
-  ---------------------------------------------------------------------
-
- For any questions or concerns please reach out to me or our team on devpost: https://devpost.com/software/hapticdao
- <br/> 
  
+ For any questions or concerns please reach out to me or our team on devpost: https://devpost.com/software/hapticdao
+   ---------------------------------------------------------------------
+
  Or at our email: haptcdao@gmail.com
- <br/>
- ---------------------------------------------------------------------
+  ---------------------------------------------------------------------
 
  <br/> <br/> <br/>
  
