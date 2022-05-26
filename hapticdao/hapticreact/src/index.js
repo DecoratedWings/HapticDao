@@ -5,10 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { MoralisProvider } from "react-moralis";
 
+const envData = {
+      serverUrl : process.env.REACT_APP_MORALIS_SERVER_URL,
+      appId : process.env.REACT_APP_MORALIS_APP_ID
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log("SERVER URL", envData.serverUrl);
+console.log("APPID", envData.appId)
 root.render(
   <React.StrictMode>
-    <MoralisProvider serverUrl="https://hlwxa0g0qo9f.usemoralis.com:2053/server" appId="ErlDVKjRFaVs8OnyLjAM05RdBCk6NVNM1F1KPfKd">
+    <MoralisProvider serverUrl={envData.serverUrl} appId={envData.appId}>
       <App />
     </MoralisProvider>
   </React.StrictMode>
