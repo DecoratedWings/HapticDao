@@ -53,45 +53,33 @@ const TruflationCardList = () => {
 
     
     async function getFoodInflation() {
-      console.log("calling ... ")
       truflationContract.foodInflation().then(result=>{
         setFoodInflation(Number(result).toFixed(2));
-        console.log("inflation is: ",result)
       });
     }
     async function getHousingInflation() {
-      console.log("calling ... ")
       truflationContract.housingInflation().then(result=>{
         setHousingInflation(Number(result).toFixed(2));
-        console.log("inflation is: ",result)
       });
     }
     async function getTransportationInflation() {
-      console.log("calling ... ")
       truflationContract.transportationInflation().then(result=>{
         setTransportationInflation(Number(result).toFixed(2));
-        console.log("inflation is: ",result)
       });
     }
     async function getMedicalInflation() {
-      console.log("calling ... ")
       truflationContract.medicalInflation().then(result=>{
         setMedicalInflation(Number(result).toFixed(2));
-        console.log("inflation is: ",result)
       });
     }
     async function getEducationInflation() {
-      console.log("calling ... ")
       truflationContract.educationInflation().then(result=>{
         setEducationInflation(Number(result).toFixed(2));
-        console.log("inflation is: ",result)
       });
     }
     async function getPersonalItemInflation() {
-      console.log("calling ... ")
       truflationContract.personalItemInflation().then(result=>{
         setPersonalItemInflation(Number(result).toFixed(2));
-        console.log("inflation is: ",result)
       });
     }
     
@@ -115,7 +103,6 @@ const TruflationCardList = () => {
 
   return (
       <div className='grid grid-cols-3 col-span-3'>
-    {/* { console.log("Mapping is: ", hapticDAOContract.titleToCardMap())} */}
     {cardInfo.map(renderCard)}
     </div>
   )
