@@ -13,7 +13,7 @@
 2) <b>Make sure you have metamask in your browser, otherwise some pages will not appear! 
       Dashboard, DAO, and Truflation use Rinkeby network. DEX uses Polygon mainnet, but will prompt users to switch chains automatically 
       if they forget to switch from Rinkeby.</b>
-<br/>
+
 3) ### Dashboard 
     We are using Rinkeby chanlink price feeds. Make sure your metamask chain is rinkeby. 
     There is a limited offering of tokens on rinkeby, and from that offering we chose the most popular ones for now. 
