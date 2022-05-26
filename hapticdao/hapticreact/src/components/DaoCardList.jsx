@@ -4,42 +4,8 @@ import hapticDAO from './utils/HapticDao.json';
 import { ethers } from "ethers";
 
 const DaoCardList = () => {
-  // let arrDaoCards = [];
 
   const [arrDaoCards, setArrDaoCards] = useState([]);
-
-  /**
-   * Previous hardcoded implementation. Now reading from hapticDao contract on-chain
-      can view entries from daoCards array at 0x49Bf054E5Dc02998ECd4C31F94cAB38821c5983f
-      on Rinkeby.
-   */
-  // const cardInfo = [
-  //   {
-  //     title: "Language Support",
-  //     description: "Add additional languages to Haptic Dao",
-  //     score: 0
-  //   },
-  //   {
-  //     title: "Vibration Rate",
-  //     description: "Increase the duration of the rate of success button vibration",
-  //     score: 0
-  //   },
-  //   {
-  //     title: "Mobile UI",
-  //     description: "Improvements to the spacing and mobile UI design",
-  //     score: 0
-  //   },
-  //   {
-  //     title: "Host Cards on an endpoint",
-  //     description: "Allow users to get/post requests to json list of improvements",
-  //     score: 0
-  //   },
-  //   {
-  //     title: "Database of Users",
-  //     description: "Add DB of Users so can transfer funds between users in your contacts",
-  //     score: 0
-  //   },
-  // ]
 
   const contractAddress = "0x49Bf054E5Dc02998ECd4C31F94cAB38821c5983f";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -83,11 +49,10 @@ const DaoCardList = () => {
 
   return (
     <div className='grid grid-cols-3 col-span-1'>
-      {/* {getCards} */}
       {console.log("ENTIRE ARRAY IS ", arrDaoCards)}
       {arrDaoCards.map(renderCard)}
     </div>
   )
 }
 
-export default DaoCardList
+export default DaoCardList;
