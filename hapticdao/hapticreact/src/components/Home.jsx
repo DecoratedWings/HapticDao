@@ -3,6 +3,9 @@ import Hands3D from './3DHands';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import HapticVibrationService from '../services/HapticVibrationService';
 import Auth from './Auth';
+import MainPage from './MainPage';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 const Home = () => {
     const hapticVibrationService = new HapticVibrationService();
@@ -14,6 +17,11 @@ const Home = () => {
         });
         speak({ text: "Entering The Application" });
         window.location.href="/main";
+        return(
+         <Routes>
+            <Route path="/main" exact element={<MainPage/>} />
+         </Routes>
+        );
     }
 
     return (
