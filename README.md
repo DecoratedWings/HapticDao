@@ -64,7 +64,7 @@
    For Uniswap: we did not add any special functionality here. It is literally just uniswap.
   
 
-## Running The Application To Include Python backend
+## Running The Application To Include Python backend -> NOT HACKATHON RELATED
 <br/>
 
 <i>Note: This portion of the instructions is for our team. Not intended for hackathon but for future use cases.</i>
