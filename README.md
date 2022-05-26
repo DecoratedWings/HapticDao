@@ -5,7 +5,10 @@
 
 # Instructions For Judges for Chainlink Hackathon 2022:
 
-1) Clone the repository and cd into hapticdao/hapticreact, then just like any other react project: 
+1) We are hosting the react application via Moralis: https://hlwxa0g0qo9f.usemoralis.com/ --> Can test running application here :)
+   If you encounter any issues please let us know. Dashboard, DAO, and Truflation require you to be on Rinkeby network. 
+
+   Alternatively, you may clone the repository and cd into hapticdao/hapticreact, then just like any other react project: 
     ```
     $ npm install
     
