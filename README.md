@@ -1,5 +1,31 @@
 # HapticDao
 
+
+
+# Instructions For Judging for Chainlink Hackathon 2022
+
+1) Clone the repository and cd into hapticdao/hapticreact, then just like any othe react project: 
+    ```
+    $ npm install
+    
+    $ npm run start
+    ```
+2) Make sure you have metamask in your browser, otherwise some pages will not appear.
+3) ### Dashboard 
+    We are using Rinkeby chanlink price feeds. Make sure your metamask chain is rinkeby. 
+    There is a limited offering of tokens on rinkeby, and from that offering we chose the most popular ones for now. 
+    
+    Verbal Commands: 
+    1) get wallet balance 
+    2) get the price of * 
+     a) link
+     b) bitcoin
+     c) ethereum 
+     d) augur
+     e) ripple 
+     ...etc 
+
+
 ## Running The Application 
 <br/>
 
