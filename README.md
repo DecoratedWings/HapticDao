@@ -88,6 +88,10 @@
  For any questions or concerns please reach out to me or our team on devpost: https://devpost.com/software/hapticdao
  <br/>
  Or at our email: haptcdao@gmail.com
+ <br/>
+ ---------------------------------------------------------------------
+
+ <br/> <br/> <br/>
  
 
 ## Running The Application To Include Python backend -> NOT HACKATHON RELATED
