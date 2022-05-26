@@ -1,5 +1,6 @@
 # HapticDao
 
+![home](https://user-images.githubusercontent.com/17859699/170548909-0bea2c73-3181-4d37-9486-2a2401f4d01a.png)
 
 
 # Instructions For Judges for Chainlink Hackathon 2022:
@@ -14,7 +15,8 @@
       Dashboard, DAO, and Truflation use Rinkeby network. DEX uses Polygon mainnet, but will prompt users to switch chains automatically 
       if they forget to switch from Rinkeby.</b>
 
-3) ### Dashboard 
+3) ### Dashboard <br><br> ![dashboard](https://user-images.githubusercontent.com/17859699/170549081-42823fd9-8647-4ae0-b51f-908b39d5ed0b.png)
+ 
     We are using Rinkeby chanlink price feeds. Make sure your metamask chain is rinkeby. 
     There is a limited offering of tokens on rinkeby, and from that offering we chose the most popular ones for now. 
     
@@ -29,16 +31,22 @@
      d) augur
      e) ripple 
      ...etc 
+ <br>
      
-4) ### DAO 
-   DAO is pretty straightforward. You can add or vote on proposals. You will see cards be added to the page once the transaction is complete so refresh the    page. Voting or Adding proposals will charge 0.01 ether on Rinkeby network. Make sure you are connected to Rinkeby network! 
+4) ### DAO <br><br> ![dao](https://user-images.githubusercontent.com/17859699/170549545-687e8524-3e53-4af0-a745-213b0435e815.png)
+
+   DAO is pretty straightforward. You can add or vote on proposals. You will see cards be added to the page once the transaction is complete so refresh      the page. Voting or Adding proposals will charge 0.01 ether on Rinkeby network. Make sure you are connected to Rinkeby network! 
+ <br>
  
-5) ### Truflation 
+5) ### Truflation <br><br> ![truflation](https://user-images.githubusercontent.com/17859699/170549661-0997e85a-0a5b-49fd-b10e-801a8ace70e5.png)
+
    Can view latest inflation data. Our keeper that runs a 5 minute sync can be found here: https://keepers.chain.link/rinkeby/568
    If you need our team to fund the keeper, please let us know. 
+ <br>
 
-6) ### DEX
-   You will be automatically prompted to switch to matic mainnet. Moralis OneInch plugin requires mainnet to be used. We have elected to use solely polygon    mainnet for now. OneInch has a limited number of token addresses it supports on each network. Once again we selected the most popular from that limited    list for this iteration.
+6) ### DEX <br> <br> ![dex](https://user-images.githubusercontent.com/17859699/170549720-bddee50d-3543-4769-b472-d08093ac5e2b.png)
+
+  You will be automatically prompted to switch to matic mainnet. Moralis OneInch plugin requires mainnet to be used. We have elected to use solely polygon    mainnet for now. OneInch has a limited number of token addresses it supports on each network. Once again we selected the most popular from that limited    list for this iteration.
    
    Verbal Commands 
    1) quote * of * to * 
