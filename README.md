@@ -100,7 +100,7 @@
  For any questions or concerns please reach out to me or our team on devpost: https://devpost.com/software/hapticdao
    ---------------------------------------------------------------------
 
- Or at our email: haptcdao@gmail.com
+ Or at our email: hapticsdao@gmail.com
   ---------------------------------------------------------------------
 
  <br/> <br/> <br/>
